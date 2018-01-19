@@ -9,6 +9,7 @@ require 'aamva/validator'
 
 module Aamva
   DAY_LENGTH = 3
+  MAX_DAC_LENGTH = 40
 
   DAY_MAPPING = {
     'BLK' => 'Black',
