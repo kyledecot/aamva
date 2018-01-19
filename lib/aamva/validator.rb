@@ -10,6 +10,12 @@ module Aamva
       true
     end
 
+    # Document Expiration Date
+
+    def self.dba(dbd)
+      dbd.match?(/\A[\d+]{8,8}\z/)
+    end
+
     # Document Issue Date
 
     def self.dbd(dbd)

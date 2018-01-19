@@ -2,6 +2,22 @@ require "spec_helper"
 
 RSpec.describe Aamva::Validator do
 
+  # Document Expiration Date
+
+  describe ".dba" do
+    describe "when valid" do
+      it { expect(described_class.dba("09141986")).to be(true) }
+      it { expect(described_class.dba("19860914")).to be(true) }
+    end
+
+    describe "when invalid" do
+      it { expect(described_class.dba("")).to be(false) }
+      it { expect(described_class.dba("09/14/1986")).to be(false) }
+      it { expect(described_class.dba("09/14/86")).to be(false) }
+      it { expect(described_class.dba("1986-09-14")).to be(false) }
+    end
+  end
+
   # Physical Description – Eye Color
 
   describe ".day" do
