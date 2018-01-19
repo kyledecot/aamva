@@ -10,6 +10,12 @@ module Aamva
       true
     end
 
+    # Document Issue Date
+
+    def self.dbd(dbd)
+      dbd.match?(/\A[\d+]{8,8}\z/)
+    end
+
     # Date of Birth
 
     def self.dbb(dbb)

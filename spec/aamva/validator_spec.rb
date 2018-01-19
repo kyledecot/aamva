@@ -16,6 +16,22 @@ RSpec.describe Aamva::Validator do
     end
   end
 
+  # Document Issue Date
+
+  describe ".dbd" do
+    describe "when valid" do
+      it { expect(described_class.dbd("09141986")).to be(true) }
+      it { expect(described_class.dbd("19860914")).to be(true) }
+    end
+
+    describe "when invalid" do
+      it { expect(described_class.dbd("")).to be(false) }
+      it { expect(described_class.dbd("09/14/1986")).to be(false) }
+      it { expect(described_class.dbd("09/14/86")).to be(false) }
+      it { expect(described_class.dbd("1986-09-14")).to be(false) }
+    end
+  end
+
   # Date of Birth
 
   describe ".dbb" do

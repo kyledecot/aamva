@@ -21,5 +21,11 @@ module Aamva
     def self.dbb
       Faker::Date.birthday.strftime("%Y%m%d")
     end
+
+    # Document Issue Date
+
+    def self.dbd
+      Faker::Date.backward.strftime("%Y%m%d")
+    end
   end
 end
