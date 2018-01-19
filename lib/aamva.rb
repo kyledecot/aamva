@@ -11,6 +11,17 @@ module Aamva
   DAY_LENGTH = 3
   MAX_DAC_LENGTH = 40
 
+  DCG_MAPPING = {
+    'USA' => 'USA',
+    'CAN' => 'CAN'
+  }
+
+  DBC_MAPPING = {
+    "1" => "Male",
+    "2" => "Female",
+    "9" => "Not Specified"
+  }
+
   DAY_MAPPING = {
     'BLK' => 'Black',
     'BLU' => 'Blue',
