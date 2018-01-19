@@ -1,5 +1,7 @@
-require "gli"
-require "aamva/version"
+# frozen_string_literal: true
+
+require 'gli'
+require 'aamva/version'
 
 module Aamva
   class CLI
