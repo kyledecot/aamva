@@ -1,6 +1,7 @@
+# frozen_string_literal: true
+
 module Aamva
   class Validator
-
     # Family name truncation
 
     def self.dde(dde)
@@ -19,7 +20,7 @@ module Aamva
       truncation(ddg)
     end
 
-    # Physical Description – Eye Color
+    # Physical Description - Eye Color
 
     def self.day(day)
       return false unless length(day, min: DAY_LENGTH, max: DAY_LENGTH)

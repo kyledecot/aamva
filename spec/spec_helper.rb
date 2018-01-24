@@ -3,7 +3,7 @@
 require 'bundler/setup'
 require 'aamva'
 
-Dir[File.dirname(__FILE__) + "/support/**/*.rb"].each { |f| require f }
+Dir[File.dirname(__FILE__) + '/support/**/*.rb'].each { |f| require f }
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure

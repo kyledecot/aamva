@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'faker'
 
 module Aamva
@@ -9,12 +11,12 @@ module Aamva
     # Customer ID Number
 
     def self.daq
-      chars = ('A'..'Z').to_a + (('0'..'9').to_a)
+      chars = ('A'..'Z').to_a + ('0'..'9').to_a
 
-      chars.sample(25).join("")
+      chars.sample(25).join('')
     end
 
-    # Physical Description – Eye Color
+    # Physical Description - Eye Color
 
     def self.day
       DAY_MAPPING.keys.sample
@@ -27,13 +29,13 @@ module Aamva
     # Date of Birth
 
     def self.dbb
-      Faker::Date.birthday.strftime("%Y%m%d")
+      Faker::Date.birthday.strftime('%Y%m%d')
     end
 
     # Document Issue Date
 
     def self.dbd
-      Faker::Date.backward.strftime("%Y%m%d")
+      Faker::Date.backward.strftime('%Y%m%d')
     end
   end
 end

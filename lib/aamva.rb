@@ -14,13 +14,13 @@ module Aamva
   DCG_MAPPING = {
     'USA' => 'USA',
     'CAN' => 'CAN'
-  }
+  }.freeze
 
   DBC_MAPPING = {
-    "1" => "Male",
-    "2" => "Female",
-    "9" => "Not Specified"
-  }
+    '1' => 'Male',
+    '2' => 'Female',
+    '9' => 'Not Specified'
+  }.freeze
 
   DAY_MAPPING = {
     'BLK' => 'Black',
@@ -30,6 +30,6 @@ module Aamva
     'GRN' => 'Green',
     'HAZ' => 'Hazel',
     'MAR' => 'Maroon PNK Pink',
-    'DIC' => 'Dichromatic UNK Unknown',
-  }
+    'DIC' => 'Dichromatic UNK Unknown'
+  }.freeze
 end

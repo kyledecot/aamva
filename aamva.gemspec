@@ -23,8 +23,8 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ['lib']
 
-  spec.add_dependency 'gli', '~> 2.16'
   spec.add_dependency 'faker'
+  spec.add_dependency 'gli', '~> 2.16'
 
   spec.add_development_dependency 'bundler', '~> 1.14'
   spec.add_development_dependency 'guard-rspec', '~> 4.7.3'
