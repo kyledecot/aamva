@@ -11,6 +11,34 @@ module AAMVA
   DAY_LENGTH = 3
   MAX_DAC_LENGTH = 40
 
+  DATE_FORMATS = {
+    :usa => '%Y%m%d',
+    :can => '%m%d%Y'
+  }
+
+  REQUIRED_DATA_ELEMENTS = [
+    :dca,
+    :dcb,
+    :dcd,
+    :dba,
+    :dcs,
+    :dac,
+    :dad,
+    :dbd,
+    :dbc,
+    :day,
+    :dau,
+    :dag,
+    :dai,
+    :daj,
+    :dak,
+    :daq,
+    :dcf,
+    :dde,
+    :ddf,
+    :ddg,
+  ]
+
   DCG_MAPPING = {
     'USA' => 'USA',
     'CAN' => 'CAN'

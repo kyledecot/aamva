@@ -3,6 +3,20 @@
 require 'spec_helper'
 
 RSpec.describe AAMVA::Generator do
+  AAMVA::REQUIRED_DATA_ELEMENTS.each do |data_element|
+    describe ".#{data_element}" do
+      describe 'with no options' do
+        it { expect(described_class).to respond_to(data_element) }
+      end
+    end
+  end
+
+  describe '.dca' do
+    describe 'with no options' do
+      it { expect(described_class.dca).to be_a_valid_data_element(:dca) }
+    end
+  end
+
   describe '.day' do
     describe 'with no options' do
       it { expect(described_class.day).to be_a_valid_data_element(:day) }

@@ -4,6 +4,10 @@ require 'faker'
 
 module AAMVA
   class Generator
+    def self.dca
+      Faker::Date.forward.strftime(DATE_FORMATS[:usa])
+    end
+
     def self.dcg
       DCG_MAPPING.keys.sample
     end
@@ -29,13 +33,13 @@ module AAMVA
     # Date of Birth
 
     def self.dbb
-      Faker::Date.birthday.strftime('%Y%m%d')
+      Faker::Date.birthday.strftime(DATE_FORMATS[:usa])
     end
 
     # Document Issue Date
 
     def self.dbd
-      Faker::Date.backward.strftime('%Y%m%d')
+      Faker::Date.backward.strftime(DATE_FORMATS[:usa])
     end
   end
 end
