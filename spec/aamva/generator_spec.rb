@@ -7,6 +7,12 @@ RSpec.describe Aamva::Generator do
     end
   end
 
+  describe ".daq" do
+    describe "with no options" do
+      it { expect(described_class.daq).to be_a_valid_daq }
+    end
+  end
+
   describe ".dcg" do
     describe "with no options" do
       it { expect(described_class.dcg).to be_a_valid_dcg }

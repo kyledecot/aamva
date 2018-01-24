@@ -6,6 +6,14 @@ module Aamva
       DCG_MAPPING.keys.sample
     end
 
+    # Customer ID Number
+
+    def self.daq
+      chars = ('A'..'Z').to_a + (('0'..'9').to_a)
+
+      chars.sample(25).join("")
+    end
+
     # Physical Description – Eye Color
 
     def self.day

@@ -16,6 +16,12 @@ module Aamva
       dbd.match?(/\A[\d+]{8,8}\z/)
     end
 
+    # Customer ID Number
+
+    def self.daq(daq)
+      daq.match?(/\A[\d\w]{1,25}\z/)
+    end
+
     # Document Issue Date
 
     def self.dbd(dbd)
@@ -53,8 +59,6 @@ module Aamva
 
       true
     end
-
-    private
 
     def self.length(value, min:, max:)
       value.length >= min && value.length <= max

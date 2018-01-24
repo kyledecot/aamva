@@ -2,6 +2,18 @@ require "spec_helper"
 
 RSpec.describe Aamva::Validator do
 
+  # Customer ID Number
+
+  describe ".daq" do
+    describe "when valid" do
+      it { expect(described_class.daq("T64235789")).to be(true) }
+    end
+
+    describe "when invalid" do
+      it { expect(described_class.daq("")).to be(false) }
+    end
+  end
+
   # Document Expiration Date
 
   describe ".dba" do
