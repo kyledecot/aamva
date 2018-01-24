@@ -1,6 +1,24 @@
 module Aamva
   class Validator
 
+    # Family name truncation
+
+    def self.dde(dde)
+      truncation(dde)
+    end
+
+    # First name truncation
+
+    def self.ddf(ddf)
+      truncation(ddf)
+    end
+
+    # Middle name truncation
+
+    def self.ddg(ddg)
+      truncation(ddg)
+    end
+
     # Physical Description – Eye Color
 
     def self.day(day)
@@ -62,6 +80,12 @@ module Aamva
 
     def self.length(value, min:, max:)
       value.length >= min && value.length <= max
+    end
+
+    private
+
+    def self.truncation(value)
+      value.match?(/\A[NTU]{1}\z/)
     end
   end
 end

@@ -2,6 +2,46 @@ require "spec_helper"
 
 RSpec.describe Aamva::Validator do
 
+  describe ".dde" do
+    describe "when valid" do
+      it { expect(described_class.dde("T")).to be(true) }
+      it { expect(described_class.dde("N")).to be(true) }
+      it { expect(described_class.dde("U")).to be(true) }
+    end
+
+    describe "when invalid" do
+      it { expect(described_class.dde("")).to be(false) }
+      it { expect(described_class.dde("K")).to be(false) }
+    end
+  end
+
+
+  describe ".ddf" do
+    describe "when valid" do
+      it { expect(described_class.ddf("T")).to be(true) }
+      it { expect(described_class.ddf("N")).to be(true) }
+      it { expect(described_class.ddf("U")).to be(true) }
+    end
+
+    describe "when invalid" do
+      it { expect(described_class.ddf("")).to be(false) }
+      it { expect(described_class.ddf("K")).to be(false) }
+    end
+  end
+
+  describe ".ddg" do
+    describe "when valid" do
+      it { expect(described_class.ddg("T")).to be(true) }
+      it { expect(described_class.ddg("N")).to be(true) }
+      it { expect(described_class.ddg("U")).to be(true) }
+    end
+
+    describe "when invalid" do
+      it { expect(described_class.ddg("")).to be(false) }
+      it { expect(described_class.ddg("K")).to be(false) }
+    end
+  end
+
   # Customer ID Number
 
   describe ".daq" do
