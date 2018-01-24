@@ -3,7 +3,7 @@
 require 'aamva/data_element/base'
 require 'aamva/data_element/day'
 
-module Aamva
+module AAMVA
   module DataElement
   end
 end

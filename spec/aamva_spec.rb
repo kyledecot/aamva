@@ -2,8 +2,8 @@
 
 require 'spec_helper'
 
-RSpec.describe Aamva do
+RSpec.describe AAMVA do
   it 'has a version number' do
-    expect(Aamva::VERSION).not_to be nil
+    expect(AAMVA::VERSION).not_to be nil
   end
 end

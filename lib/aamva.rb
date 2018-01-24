@@ -7,7 +7,7 @@ require 'aamva/cli'
 require 'aamva/generator'
 require 'aamva/validator'
 
-module Aamva
+module AAMVA
   DAY_LENGTH = 3
   MAX_DAC_LENGTH = 40
 

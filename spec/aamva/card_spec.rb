@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-RSpec.describe Aamva::Card do
+RSpec.describe AAMVA::Card do
   describe '#initialize' do
   end
 end

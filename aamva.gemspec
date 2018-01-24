@@ -7,7 +7,7 @@ require 'aamva/version'
 
 Gem::Specification.new do |spec|
   spec.name          = 'aamva'
-  spec.version       = Aamva::VERSION
+  spec.version       = AAMVA::VERSION
   spec.authors       = ['Kyle Decot']
   spec.email         = ['kyle@joinroot.com']
 

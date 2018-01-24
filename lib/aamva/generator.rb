@@ -2,7 +2,7 @@
 
 require 'faker'
 
-module Aamva
+module AAMVA
   class Generator
     def self.dcg
       DCG_MAPPING.keys.sample

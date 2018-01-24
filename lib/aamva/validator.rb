@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Aamva
+module AAMVA
   class Validator
     # Family name truncation
 
@@ -61,10 +61,7 @@ module Aamva
     end
 
     def self.dcg(dcg)
-      return false unless length(dcg, min: 3, max: 3)
-      return false unless DCG_MAPPING.keys.include?(dcg)
-
-      true
+      dcg.match?(/\A(#{DCG_MAPPING.keys.join("|")})\z/)
     end
 
     def self.dai(dai)

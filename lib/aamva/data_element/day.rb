@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Aamva
+module AAMVA
   module DataElement
     class DAY < Base
       HAZEL = 'HAZ'

@@ -3,4 +3,4 @@
 
 require 'aamva'
 
-Aamva::CLI.run(ARGV)
+AAMVA::CLI.run(ARGV)

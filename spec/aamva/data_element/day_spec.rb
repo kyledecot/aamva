@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-RSpec.describe Aamva::DataElement::DAY do
+RSpec.describe AAMVA::DataElement::DAY do
   describe '#format' do
     subject { described_class.new(described_class::HAZEL).format }
 

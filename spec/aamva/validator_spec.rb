@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-RSpec.describe Aamva::Validator do
+RSpec.describe AAMVA::Validator do
   describe '.dde' do
     describe 'when valid' do
       it { expect(described_class.dde('T')).to be(true) }

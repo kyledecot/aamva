@@ -3,15 +3,15 @@
 require 'gli'
 require 'aamva/version'
 
-module Aamva
+module AAMVA
   class CLI
     extend GLI::App
 
-    version Aamva::VERSION
+    version AAMVA::VERSION
 
     command ['generate:day'] do |c|
       c.action do |_global, _options, _args|
-        puts Aamva::Generator.day
+        puts AAMVA::Generator.day
       end
     end
   end
