@@ -2,11 +2,30 @@
 
 module AAMVA
   class Validator
+    def self.dag(data_element)
+      data_element.match?(/\A[\w\d\s]{1,35}\z/)
+    end
+
+    def self.dai(data_element)
+      data_element.match?(/\A[\w]{1,20}\z/)
+    end
 
     # Jurisdiction - specific vehicle class
 
     def self.dca(dca)
       dca.match?(/\A[\d\w]{1,6}\z/)
+    end
+
+    def self.daj(data_element)
+      data_element.match?(/\A[\w]{2}\z/)
+    end
+
+    def self.dcf(data_element)
+      data_element.match?(/\A[\d\w]{1,25}\z/)
+    end
+
+    def self.dak(data_element)
+      data_element.match?(/\A[\d\w]{11}\z/)
     end
 
     # Jurisdiction - specific restriction code
