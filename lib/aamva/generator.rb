@@ -11,15 +11,15 @@ module AAMVA
     end
 
     def self.dde
-      TRUNCATION_INDICATORS.values.sample
+      TRUNCATION_INDICATORS.sample
     end
 
     def self.ddf
-      TRUNCATION_INDICATORS.values.sample
+      TRUNCATION_INDICATORS.sample
     end
 
     def self.ddg
-      TRUNCATION_INDICATORS.values.sample
+      TRUNCATION_INDICATORS.sample
     end
 
     def self.dca

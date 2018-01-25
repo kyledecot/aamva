@@ -10,11 +10,7 @@ module AAMVA
   DAY_LENGTH = 3
   MAX_DAC_LENGTH = 40
 
-  TRUNCATION_INDICATORS = {
-    :untruncated => 'N',
-    :truncated => 'T',
-    :unknown => 'U'
-  }
+  TRUNCATION_INDICATORS = %w[N T U].freeze
 
   DATE_FORMATS = {
     :can => '%Y%m%d',
