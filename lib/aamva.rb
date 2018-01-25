@@ -2,7 +2,6 @@
 
 require 'aamva/version'
 require 'aamva/card'
-require 'aamva/data_element'
 require 'aamva/cli'
 require 'aamva/generator'
 require 'aamva/validator'
@@ -11,9 +10,15 @@ module AAMVA
   DAY_LENGTH = 3
   MAX_DAC_LENGTH = 40
 
+  TRUNCATION_INDICATORS = {
+    :untruncated => 'N',
+    :truncated => 'T',
+    :unknown => 'U'
+  }
+
   DATE_FORMATS = {
-    :usa => '%Y%m%d',
-    :can => '%m%d%Y'
+    :can => '%Y%m%d',
+    :usa => '%m%d%Y'
   }
 
   REQUIRED_DATA_ELEMENTS = [

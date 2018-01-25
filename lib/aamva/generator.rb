@@ -5,6 +5,24 @@ require 'faker'
 module AAMVA
   class Generator
     def self.dca
+      chars = ('A'..'Z').to_a + ('0'..'9').to_a
+
+      chars.sample(6).join('')
+    end
+
+    def self.dde
+      TRUNCATION_INDICATORS.values.sample
+    end
+
+    def self.ddf
+      TRUNCATION_INDICATORS.values.sample
+    end
+
+    def self.ddg
+      TRUNCATION_INDICATORS.values.sample
+    end
+
+    def self.dca
       Faker::Date.forward.strftime(DATE_FORMATS[:usa])
     end
 

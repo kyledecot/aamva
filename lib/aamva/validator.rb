@@ -2,6 +2,25 @@
 
 module AAMVA
   class Validator
+
+    # Jurisdiction - specific vehicle class
+
+    def self.dca(dca)
+      dca.match?(/\A[\d\w]{1,6}\z/)
+    end
+
+    # Jurisdiction - specific restriction code
+
+    def self.dcb(dcb)
+      dcb.match?(/\A[\d\w]{1,12}\z/)
+    end
+
+    # Jurisdiction - specific endorsement codes
+
+    def self.dcd(dcd)
+      dcd.match?(/\A[\d\w]{1,5}\z/)
+    end
+
     # Family name truncation
 
     def self.dde(dde)
