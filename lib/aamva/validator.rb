@@ -2,6 +2,18 @@
 
 module AAMVA
   class Validator
+    def self.dcs(data_element)
+      data_element.match?(/\A[\w\,\']{1,40}\z/)
+    end
+
+    def self.dad(data_element)
+      data_element.match?(/\A[\w\,]{1,40}\z/)
+    end
+
+    def self.dau(data_element)
+      data_element.match?(/\A[\d]{3} (in|cm)\z/)
+    end
+
     def self.dag(data_element)
       data_element.match?(/\A[\w\d\s]{1,35}\z/)
     end
@@ -93,7 +105,7 @@ module AAMVA
 
     def self.dbc(dbc)
       return false unless length(dbc, min: 1, max: 1)
-      return false unless DBC_MAPPING.keys.include?(dbc)
+      return false unless DBC_VALUES.include?(dbc)
 
       true
     end
@@ -114,14 +126,14 @@ module AAMVA
       true
     end
 
+    private
+
     def self.length(value, min:, max:)
       value.length >= min && value.length <= max
     end
 
-    private
-
-    def self.truncation(value)
-      value.match?(/\A[NTU]{1}\z/)
+    def self.truncation(value, indicators = TRUNCATION_INDICATORS)
+      value.match?(/\A[#{indicators.join("")}]{1}\z/)
     end
   end
 end

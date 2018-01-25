@@ -45,11 +45,7 @@ module AAMVA
     'CAN' => 'CAN'
   }.freeze
 
-  DBC_MAPPING = {
-    '1' => 'Male',
-    '2' => 'Female',
-    '9' => 'Not Specified'
-  }.freeze
+  DBC_VALUES = ['1', '2', '9'].freeze
 
   DAY_MAPPING = {
     'BLK' => 'Black',

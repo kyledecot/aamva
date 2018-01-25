@@ -4,6 +4,34 @@ require 'faker'
 
 module AAMVA
   class Generator
+    def self.dcb
+      chars = ('A'..'Z').to_a
+
+      chars.sample(12).join('')
+    end
+
+    def self.dcd
+      chars = ('A'..'Z').to_a
+
+      chars.sample(5).join('')
+    end
+
+    def self.dbc
+      DBC_VALUES.sample
+    end
+
+    def self.dba
+      Faker::Date.forward.strftime(DATE_FORMATS[:usa])
+    end
+
+    def self.dcs
+      truncate(Faker::Name.last_name, length: 40)
+    end
+
+    def self.dad
+      truncate(Faker::Name.first_name, length: 40)
+    end
+
     def self.dau
       "073 in"
     end
