@@ -32,8 +32,11 @@ module AAMVA
       truncate(Faker::Name.first_name, length: 40)
     end
 
-    def self.dau
-      "073 in"
+     def self.dau
+       units = ["in", "cm"]
+       height = ("000".."999").to_a.sample
+
+       "#{height} #{units.first}"
     end
 
     def self.dag
