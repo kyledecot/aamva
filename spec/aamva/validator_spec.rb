@@ -3,6 +3,12 @@
 require 'spec_helper'
 
 RSpec.describe AAMVA::Validator do
+  describe ".dag" do
+    describe "when valid" do
+      it { expect(described_class.dag("27082 O'Conner Green")).to be(true)}
+    end
+  end
+
   describe '.dde' do
     describe 'when valid' do
       it { expect(described_class.dde('T')).to be(true) }

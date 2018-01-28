@@ -15,7 +15,9 @@ module AAMVA
     end
 
     def self.dag(data_element)
-      data_element.match?(/\A[\w\d\s]{1,35}\z/)
+      regexp = /\A[#{ALPHA_CHARACTERS}#{NUMERIC_CHARACTERS}#{SPECIAL_CHARACTERS}]{1,35}\z/
+
+      data_element.match?(regexp)
     end
 
     def self.dai(data_element)
@@ -24,8 +26,8 @@ module AAMVA
 
     # Jurisdiction - specific vehicle class
 
-    def self.dca(dca)
-      dca.match?(/\A[\d\w]{1,6}\z/)
+    def self.dca(data_element)
+      regexp(data_element, :dca)
     end
 
     def self.daj(data_element)
@@ -81,8 +83,8 @@ module AAMVA
 
     # Document Expiration Date
 
-    def self.dba(dbd)
-      dbd.match?(/\A[\d+]{8,8}\z/)
+    def self.dba(value)
+      regexp(value, :dba)
     end
 
     # Customer ID Number
@@ -93,14 +95,14 @@ module AAMVA
 
     # Document Issue Date
 
-    def self.dbd(dbd)
-      dbd.match?(/\A[\d+]{8,8}\z/)
+    def self.dbd(data_element)
+      regexp(data_element, :dbd)
     end
 
     # Date of Birth
 
     def self.dbb(dbb)
-      dbb.match?(/\A[\d+]{8,8}\z/)
+      regexp(dbb, :dbb)
     end
 
     def self.dbc(dbc)
@@ -128,11 +130,18 @@ module AAMVA
 
     private
 
+    def self.regexp(value, data_element)
+      info = Info.data_element(data_element)
+      regexp = Regexp.new(info["regexp"])
+
+      value.match?(regexp)
+    end
+
     def self.length(value, min:, max:)
       value.length >= min && value.length <= max
     end
 
-    def self.truncation(value, indicators = TRUNCATION_INDICATORS)
+    def self.truncation(value, indicators = Info.all["truncation_indicators"])
       value.match?(/\A[#{indicators.join("")}]{1}\z/)
     end
   end

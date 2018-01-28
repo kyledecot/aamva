@@ -1,0 +1,31 @@
+truncation_indicators: &truncation_indicators
+  - T
+  - U
+  - N
+data_elements:
+  dbb:
+    data_element: Date of Birth
+    definition: Date on which the cardholder was born. (MMDDCCYY for U.S., CCYYMMDD for Canada)
+    card_types: ['DL', 'ID']
+    regexp: \A[\d+]{8,8}\z
+  dba:
+    regexp: \A[\d+]{8,8}\z
+  dbd:
+    regexp: \A[\d+]{8,8}\z
+  dde:
+    data_element: Family name truncation
+    definition: A code that indicates whether a field has been truncated (T), has not been truncated (N), or – unknown whether truncated (U).
+    card_types: ['DL', 'ID']
+  dca:
+    data_element: Jurisdiction- specific vehicle class
+    regexp: \A[\d\w]{1,6}\z
+  dag:
+    data_element: Address – Street 1
+    definition: Street portion of the cardholder address.
+    card_types: ['DL', 'ID']
+    length: variable
+    max_length: 35
+    valid_character_sets:
+      - A
+      - N
+      - S

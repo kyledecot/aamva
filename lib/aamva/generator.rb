@@ -5,15 +5,11 @@ require 'faker'
 module AAMVA
   class Generator
     def self.dcb
-      chars = ('A'..'Z').to_a
-
-      chars.sample(12).join('')
+      UPPER_ALPHA_CHARACTERS.sample(12).join('')
     end
 
     def self.dcd
-      chars = ('A'..'Z').to_a
-
-      chars.sample(5).join('')
+      UPPER_ALPHA_CHARACTERS.sample(5).join('')
     end
 
     def self.dbc
@@ -33,10 +29,9 @@ module AAMVA
     end
 
      def self.dau
-       units = ["in", "cm"]
        height = ("000".."999").to_a.sample
 
-       "#{height} #{units.first}"
+       "#{height} #{LENGTH_UNITS.first}"
     end
 
     def self.dag
@@ -72,15 +67,15 @@ module AAMVA
     end
 
     def self.dde
-      TRUNCATION_INDICATORS.sample
+      Info.all["truncation_indicators"].sample
     end
 
     def self.ddf
-      TRUNCATION_INDICATORS.sample
+      Info.all["truncation_indicators"].sample
     end
 
     def self.ddg
-      TRUNCATION_INDICATORS.sample
+      Info.all["truncation_indicators"].sample
     end
 
 

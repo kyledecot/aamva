@@ -4,13 +4,22 @@ require 'aamva/version'
 require 'aamva/card'
 require 'aamva/cli'
 require 'aamva/generator'
+require 'aamva/info'
 require 'aamva/validator'
 
 module AAMVA
+  SPECIAL_CHARACTERS = "!\"#%&'()*+,-./:;<=>?[\\]^_@ ".chars
+  UPPER_ALPHA_CHARACTERS = ("A".."Z").to_a
+  LOWER_ALPHA_CHARACTERS = ("a".."z").to_a
+  ALPHA_CHARACTERS =  UPPER_ALPHA_CHARACTERS + LOWER_ALPHA_CHARACTERS
+  NUMERIC_CHARACTERS = ("0".."9").to_a
+
+  CARD_TYPES = ["dl", "id"]
+
+  LENGTH_UNITS = ["in", "cm"]
+
   DAY_LENGTH = 3
   MAX_DAC_LENGTH = 40
-
-  TRUNCATION_INDICATORS = %w[N T U].freeze
 
   DATE_FORMATS = {
     :can => '%Y%m%d',

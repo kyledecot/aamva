@@ -2,6 +2,7 @@
 
 require 'bundler/setup'
 require 'aamva'
+require 'pry'
 
 Dir[File.dirname(__FILE__) + '/support/**/*.rb'].each { |f| require f }
 
