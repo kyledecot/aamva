@@ -22,6 +22,19 @@ RSpec.describe AAMVA::Validator do
     end
   end
 
+  describe ".dau" do
+    describe 'when valid' do
+      it { expect(described_class.dau('070 in')).to be(true) }
+      it { expect(described_class.dau('180 cm')).to be(true) }
+    end
+
+    describe 'when invalid' do
+      it { expect(described_class.dau('')).to be(false) }
+      it { expect(described_class.dau('70 in')).to be(false) }
+      it { expect(described_class.dau('70 cm')).to be(false) }
+    end
+  end
+
   describe '.ddf' do
     describe 'when valid' do
       it { expect(described_class.ddf('T')).to be(true) }

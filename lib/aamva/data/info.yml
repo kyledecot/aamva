@@ -12,6 +12,18 @@ data_elements:
     regexp: \A[\d+]{8,8}\z
   dbd:
     regexp: \A[\d+]{8,8}\z
+  daj:
+    regexp: \A[\w]{2}\z
+  dcf:
+    regexp: \A[\d\w]{1,25}\z
+  dai:
+    regexp: /\A[\w]{1,20}\z
+  dak:
+    regexp: \A[\d\w]{11}\z
+  dcb:
+    regexp: \A[\d\w]{1,12}\z
+  dau:
+    regexp: \A[\d]{3} (in|cm)\z
   dde:
     data_element: Family name truncation
     definition: A code that indicates whether a field has been truncated (T), has not been truncated (N), or – unknown whether truncated (U).

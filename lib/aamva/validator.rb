@@ -11,7 +11,7 @@ module AAMVA
     end
 
     def self.dau(data_element)
-      data_element.match?(/\A[\d]{3} (in|cm)\z/)
+      regexp(data_element, :dau)
     end
 
     def self.dag(data_element)
@@ -21,31 +21,27 @@ module AAMVA
     end
 
     def self.dai(data_element)
-      data_element.match?(/\A[\w]{1,20}\z/)
+      regexp(data_element, :dai)
     end
-
-    # Jurisdiction - specific vehicle class
 
     def self.dca(data_element)
       regexp(data_element, :dca)
     end
 
     def self.daj(data_element)
-      data_element.match?(/\A[\w]{2}\z/)
+      regexp(data_element, :daj)
     end
 
     def self.dcf(data_element)
-      data_element.match?(/\A[\d\w]{1,25}\z/)
+      regexp(data_element, :dcf)
     end
 
     def self.dak(data_element)
-      data_element.match?(/\A[\d\w]{11}\z/)
+      regexp(data_element, :dak)
     end
 
-    # Jurisdiction - specific restriction code
-
-    def self.dcb(dcb)
-      dcb.match?(/\A[\d\w]{1,12}\z/)
+    def self.dcb(data_element)
+      regexp(data_element, :dcb)
     end
 
     # Jurisdiction - specific endorsement codes

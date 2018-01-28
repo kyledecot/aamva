@@ -8,6 +8,7 @@ guard :rspec, cmd: 'bundle exec rspec' do
   watch(rspec.spec_helper) { rspec.spec_dir }
   watch(rspec.spec_support) { rspec.spec_dir }
   watch(rspec.spec_files)
+  watch(/info.yml/) { rspec.spec_dir }
 
   dsl.watch_spec_files_for(dsl.ruby.lib_files)
 end
