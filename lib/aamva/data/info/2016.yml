@@ -1,0 +1,93 @@
+truncation_indicators:
+  - T
+  - U
+  - N
+data_elements:
+  dbb:
+    required: true
+    data_element: Date of Birth
+    definition: Date on which the cardholder was born. (MMDDCCYY for U.S., CCYYMMDD for Canada)
+    regexp: \A[\d+]{8,8}\z
+  dba:
+    required: true
+    data_element: Document Expiration Date
+    definition: Date on which the driving and identification privileges granted by the document are no longer valid. (MMDDCCYY for U.S., CCYYMMDD for Canada)
+    regexp: \A[\d+]{8,8}\z
+  dbd:
+    required: true
+    data_element: Document Issue Date
+    definition: Date on which the document was issued. (MMDDCCYY for U.S., CCYYMMDD for Canada)
+    regexp: \A[\d+]{8,8}\z
+  daj:
+    required: true
+    data_element: Address – Jurisdiction Code
+    definition: State portion of the cardholder address.
+    regexp: \A[\w]{2}\z
+  dcf:
+    required: true
+    data_element: Document Discriminator
+    definition: Number must uniquely identify a particular document issued to that customer from others that may have been issued in the past. This number may serve multiple purposes of document discrimination, audit information number, and/or inventory control.
+    regexp: \A[\d\w]{1,25}\z
+  dai:
+    required: true
+    data_element: Address – City
+    definition: City portion of the cardholder address.
+    regexp: /\A[\w]{1,20}\z
+  dak:
+    required: true
+    data_element: Address – Postal Code
+    definition: Postal code portion of the cardholder address in the U.S. and Canada. If the trailing portion of the postal code in the U.S. is not known, zeros will be used to fill the trailing set of numbers up to nine (9) digits.
+    regexp: \A[\d\w]{11}\z
+  dcb:
+    required: true
+    data_element: Jurisdiction- specific restriction codes
+    definition: Jurisdiction-specific codes that represent restrictions to driving privileges (such as airbrakes, automatic transmission, daylight only, etc.).
+    regexp: \A[\d\w]{1,12}\z
+  dau:
+    required: true
+    data_element: Physical Description – Height
+    definition: |
+      Height of cardholder.
+      Inches (in): number of inches followed by " in" ex. 6'1'' = "073 in"
+      Centimeters (cm): number of centimeters followed by " cm"
+      ex. 181 centimeters="181 cm"
+    regexp: \A[\d]{3} (in|cm)\z
+  dcd:
+    required: true
+    data_element: Jurisdiction- specific endorsement codes
+    definition: Jurisdiction-specific codes that represent additional privileges granted to the cardholder beyond the vehicle class (such as transportation of passengers, hazardous materials, operation of motorcycles, etc.).
+    regexp: \A[\d\w]{1,5}\z
+  dad:
+    required: true
+    data_element: Customer Middle Name(s)
+    definition: Middle name(s) of the cardholder. In the case of multiple middle names they shall be separated by a comma “,”.
+    regexp: \A[\w\,]{1,40}\z
+  dcs:
+    required: true
+    data_element: Customer Family Name
+    definition: Family name of the cardholder. (Family name is sometimes also called “last name” or “surname.”) Collect full name for record, print as many characters as possible on portrait side of DL/ID.
+    regexp: \A[\w\,\']{1,40}\z
+  daq:
+    required: true
+    data_element: Customer ID Number
+    definition: The number assigned or calculated by the issuing authority.
+    regexp: \A[\d\w]{1,25}\z
+  dcg:
+    required: true
+    data_element: Country Identification
+    definition: Country in which DL/ID is issued. U.S. = USA, Canada = CAN.
+    regexp: \A(USA|CAN)\z
+  dde:
+    required: true
+    data_element: Family name truncation
+    definition: A code that indicates whether a field has been truncated (T), has not been truncated (N), or – unknown whether truncated (U).
+  dca:
+    required: true
+    data_element: Jurisdiction- specific vehicle class
+    definition: Jurisdiction-specific vehicle class / group code, designating the type of vehicle the cardholder has privilege to drive.
+    regexp: \A[\d\w]{1,6}\z
+  dag:
+    required: true
+    data_element: Address – Street 1
+    definition: Street portion of the cardholder address.
+    regexp: \A[A-Za-z\d["!", "\"", "#", "%", "&", "'", "(", ")", "*", "+", ",", "-", ".", "\/", ":", ";", "<", "=", ">", "?", "[", "\\", "]", "^", "_", "@", " "]]{1,35}\z

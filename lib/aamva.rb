@@ -27,24 +27,9 @@ module AAMVA
   }
 
   REQUIRED_DATA_ELEMENTS = [
-    :dca,
-    :dcb,
-    :dcd,
-    :dba,
-    :dcs,
     :dac,
-    :dad,
-    :dbd,
     :dbc,
     :day,
-    :dau,
-    :dag,
-    :dai,
-    :daj,
-    :dak,
-    :daq,
-    :dcf,
-    :dde,
     :ddf,
     :ddg,
   ]

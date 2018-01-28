@@ -2,69 +2,11 @@
 
 module AAMVA
   class Validator
-    def self.dcs(data_element)
-      regexp(data_element, :dcs)
-    end
-
-    def self.dad(data_element)
-      regexp(data_element, :dad)
-    end
-
-    def self.dau(data_element)
-      regexp(data_element, :dau)
-    end
-
-    def self.dai(data_element)
-      regexp(data_element, :dai)
-    end
-
-    def self.dca(data_element)
-      regexp(data_element, :dca)
-    end
-
-    def self.daj(data_element)
-      regexp(data_element, :daj)
-    end
-
-    def self.dcf(data_element)
-      regexp(data_element, :dcf)
-    end
-
-    def self.dak(data_element)
-      regexp(data_element, :dak)
-    end
-
-    def self.dcb(data_element)
-      regexp(data_element, :dcb)
-    end
-
-    def self.dcd(dcd)
-      regexp(dcd, :dcd)
-    end
-
-    def self.dba(value)
-      regexp(value, :dba)
-    end
-
-    def self.dbd(data_element)
-      regexp(data_element, :dbd)
-    end
-
-    def self.dbb(dbb)
-      regexp(dbb, :dbb)
-    end
-
-    def self.daq(daq)
-      regexp(daq, :daq)
+    def self.method_missing(name, *args)
+      regexp(args[0], name)
     end
 
     ##############################
-
-    def self.dag(data_element)
-      regexp = /\A[#{ALPHA_CHARACTERS}#{NUMERIC_CHARACTERS}#{SPECIAL_CHARACTERS}]{1,35}\z/
-
-      data_element.match?(regexp)
-    end
 
     # Family name truncation
 
@@ -98,10 +40,6 @@ module AAMVA
       return false unless DBC_VALUES.include?(dbc)
 
       true
-    end
-
-    def self.dcg(dcg)
-      dcg.match?(/\A(#{DCG_MAPPING.keys.join("|")})\z/)
     end
 
     def self.dai(dai)
