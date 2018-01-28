@@ -3,21 +3,15 @@
 module AAMVA
   class Validator
     def self.dcs(data_element)
-      data_element.match?(/\A[\w\,\']{1,40}\z/)
+      regexp(data_element, :dcs)
     end
 
     def self.dad(data_element)
-      data_element.match?(/\A[\w\,]{1,40}\z/)
+      regexp(data_element, :dad)
     end
 
     def self.dau(data_element)
       regexp(data_element, :dau)
-    end
-
-    def self.dag(data_element)
-      regexp = /\A[#{ALPHA_CHARACTERS}#{NUMERIC_CHARACTERS}#{SPECIAL_CHARACTERS}]{1,35}\z/
-
-      data_element.match?(regexp)
     end
 
     def self.dai(data_element)
@@ -44,10 +38,32 @@ module AAMVA
       regexp(data_element, :dcb)
     end
 
-    # Jurisdiction - specific endorsement codes
-
     def self.dcd(dcd)
-      dcd.match?(/\A[\d\w]{1,5}\z/)
+      regexp(dcd, :dcd)
+    end
+
+    def self.dba(value)
+      regexp(value, :dba)
+    end
+
+    def self.dbd(data_element)
+      regexp(data_element, :dbd)
+    end
+
+    def self.dbb(dbb)
+      regexp(dbb, :dbb)
+    end
+
+    def self.daq(daq)
+      regexp(daq, :daq)
+    end
+
+    ##############################
+
+    def self.dag(data_element)
+      regexp = /\A[#{ALPHA_CHARACTERS}#{NUMERIC_CHARACTERS}#{SPECIAL_CHARACTERS}]{1,35}\z/
+
+      data_element.match?(regexp)
     end
 
     # Family name truncation
@@ -75,30 +91,6 @@ module AAMVA
       return false unless DAY_MAPPING.keys.include?(day)
 
       true
-    end
-
-    # Document Expiration Date
-
-    def self.dba(value)
-      regexp(value, :dba)
-    end
-
-    # Customer ID Number
-
-    def self.daq(daq)
-      daq.match?(/\A[\d\w]{1,25}\z/)
-    end
-
-    # Document Issue Date
-
-    def self.dbd(data_element)
-      regexp(data_element, :dbd)
-    end
-
-    # Date of Birth
-
-    def self.dbb(dbb)
-      regexp(dbb, :dbb)
     end
 
     def self.dbc(dbc)

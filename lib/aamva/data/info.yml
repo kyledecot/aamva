@@ -1,4 +1,4 @@
-truncation_indicators: &truncation_indicators
+truncation_indicators:
   - T
   - U
   - N
@@ -24,6 +24,14 @@ data_elements:
     regexp: \A[\d\w]{1,12}\z
   dau:
     regexp: \A[\d]{3} (in|cm)\z
+  dcd:
+    regexp: \A[\d\w]{1,5}\z
+  dad:
+    regexp: \A[\w\,]{1,40}\z
+  dcs:
+    regexp: \A[\w\,\']{1,40}\z
+  daq:
+    regexp: \A[\d\w]{1,25}\z
   dde:
     data_element: Family name truncation
     definition: A code that indicates whether a field has been truncated (T), has not been truncated (N), or – unknown whether truncated (U).
