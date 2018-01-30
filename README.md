@@ -1,5 +1,9 @@
 # AAMVA
 
+[![Build Status](https://travis-ci.org/kyledecot/aamva.svg?branch=master)](https://travis-ci.org/kyledecot/aamva)
+[![Code Climate](https://codeclimate.com/github/kyledecot/aamva/badges/gpa.svg)](https://codeclimate.com/github/kyledecot/aamva)
+
+
 ### NOTE: This project is to be used for legal purposes only.
 
 ## Installation
