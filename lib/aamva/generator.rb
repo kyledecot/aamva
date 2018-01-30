@@ -4,6 +4,39 @@ require 'faker'
 
 module AAMVA
   class Generator
+    COMPLIANCE_INDICATOR = "@"
+    DATA_ELEMENT_SEPARATOR = "\n"
+    RECORD_SEPARATOR = "\r"
+    SEGMENT_TERMINATOR = "\r"
+    FILE_TYPE = "ANSI "
+
+    def self.dl
+    end
+
+    def self.issuer_identification_number
+      "123456"
+    end
+
+    def self.jurisdiction_version_number
+      "99"
+    end
+
+    def self.number_of_entries
+      "1"
+    end
+
+    def self.subfile_type
+      "DL"
+    end
+
+    def self.offset
+      "4"
+    end
+
+    def self.length
+      "1"
+    end
+
     def self.dcb
       UPPER_ALPHA_CHARACTERS.sample(12).join('')
     end

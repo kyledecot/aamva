@@ -6,6 +6,7 @@ require 'aamva/cli'
 require 'aamva/generator'
 require 'aamva/info'
 require 'aamva/validator'
+require 'aamva/decoder'
 
 module AAMVA
   SPECIAL_CHARACTERS = "!\"#%&'()*+,-./:;<=>?[\\]^_@ ".chars
