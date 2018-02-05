@@ -3,7 +3,6 @@
 require 'spec_helper'
 
 RSpec.describe AAMVA::Generator do
-
   AAMVA::Info.required_data_elements.each do |data_element|
     describe ".#{data_element}" do
       describe 'with no options' do

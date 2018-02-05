@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 module AAMVA
   class Decoder
     def initialize(barcode)
-      @spec = YAML.load_file(File.expand_path("../../../lib/aamva/data/info/2016.yml", __FILE__))
+      @spec = YAML.load_file(File.expand_path('../../../lib/aamva/data/info/2016.yml', __FILE__))
       @barcode = barcode
       @regexp = /\A(?<sub_fille_type>DL|ID)(?<offset>\d{4})(?<length>\d{4})Z\w(\d{4})(\d{4})(\w{2})(?<data_elements>.+)/m
       @header_regexp = /@\n\u001E\rANSI (?<issuer_identification_number>\d{6})(?<aamva_version_number>\d{2})(?<jurisdiction_version_number>\d{2})(?<number_of_entries>\d{2})/
@@ -15,8 +17,8 @@ module AAMVA
     def subfiles
       subfile_designators.map do |sd|
         @barcode
-          .byteslice(sd["offset"], sd["length"])
-          .slice((sd["subfile_type"]).length..-1)
+          .byteslice(sd['offset'], sd['length'])
+          .slice((sd['subfile_type']).length..-1)
           .chomp("\r")
           .split("\n")
           .map { |r| [r[0, 3], r[3..-1]] }
@@ -28,27 +30,27 @@ module AAMVA
         .scan(@subfile_designator_regexp)
         .map do |subfile_designator|
         {
-          "subfile_type" => subfile_designator[1],
-          "offset" => subfile_designator[2].to_i,
-          "length" => subfile_designator[3].to_i
+          'subfile_type' => subfile_designator[1],
+          'offset' => subfile_designator[2].to_i,
+          'length' => subfile_designator[3].to_i
         }
       end
     end
 
     def aamva_version_number
-      header_match&.[]("aamva_version_number")
+      header_match&.[]('aamva_version_number')
     end
 
     def issuer_identification_number
-      header_match&.[]("issuer_identification_number")
+      header_match&.[]('issuer_identification_number')
     end
 
     def jurisdiction_version_number
-      header_match&.[]("jurisdiction_version_number")
+      header_match&.[]('jurisdiction_version_number')
     end
 
     def number_of_entries
-      header_match&.[]("number_of_entries")
+      header_match&.[]('number_of_entries')
     end
 
     private

@@ -58,7 +58,7 @@ module AAMVA
 
     def self.regexp(value, data_element)
       info = Info.data_element(data_element)
-      regexp = Regexp.new(info["regexp"])
+      regexp = Regexp.new(info['regexp'])
 
       value.match?(regexp)
     end
@@ -67,7 +67,7 @@ module AAMVA
       value.length >= min && value.length <= max
     end
 
-    def self.truncation(value, indicators = Info.all["truncation_indicators"])
+    def self.truncation(value, indicators = Info.all['truncation_indicators'])
       value.match?(/\A[#{indicators.join("")}]{1}\z/)
     end
   end

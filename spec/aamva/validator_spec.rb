@@ -3,9 +3,9 @@
 require 'spec_helper'
 
 RSpec.describe AAMVA::Validator do
-  describe ".dag" do
-    describe "when valid" do
-      it { expect(described_class.dag("27082 O'Conner Green")).to be(true)}
+  describe '.dag' do
+    describe 'when valid' do
+      it { expect(described_class.dag("27082 O'Conner Green")).to be(true) }
     end
   end
 
@@ -22,7 +22,7 @@ RSpec.describe AAMVA::Validator do
     end
   end
 
-  describe ".dau" do
+  describe '.dau' do
     describe 'when valid' do
       it { expect(described_class.dau('070 in')).to be(true) }
       it { expect(described_class.dau('180 cm')).to be(true) }

@@ -10,37 +10,37 @@ require 'aamva/decoder'
 
 module AAMVA
   SPECIAL_CHARACTERS = "!\"#%&'()*+,-./:;<=>?[\\]^_@ ".chars
-  UPPER_ALPHA_CHARACTERS = ("A".."Z").to_a
-  LOWER_ALPHA_CHARACTERS = ("a".."z").to_a
-  ALPHA_CHARACTERS =  UPPER_ALPHA_CHARACTERS + LOWER_ALPHA_CHARACTERS
-  NUMERIC_CHARACTERS = ("0".."9").to_a
+  UPPER_ALPHA_CHARACTERS = ('A'..'Z').to_a
+  LOWER_ALPHA_CHARACTERS = ('a'..'z').to_a
+  ALPHA_CHARACTERS = UPPER_ALPHA_CHARACTERS + LOWER_ALPHA_CHARACTERS
+  NUMERIC_CHARACTERS = ('0'..'9').to_a
 
-  CARD_TYPES = ["dl", "id"]
+  CARD_TYPES = %w[dl id].freeze
 
-  LENGTH_UNITS = ["in", "cm"]
+  LENGTH_UNITS = %w[in cm].freeze
 
   DAY_LENGTH = 3
   MAX_DAC_LENGTH = 40
 
   DATE_FORMATS = {
-    :can => '%Y%m%d',
-    :usa => '%m%d%Y'
-  }
+    can: '%Y%m%d',
+    usa: '%m%d%Y'
+  }.freeze
 
-  REQUIRED_DATA_ELEMENTS = [
-    :dac,
-    :dbc,
-    :day,
-    :ddf,
-    :ddg,
-  ]
+  REQUIRED_DATA_ELEMENTS = %i[
+    dac
+    dbc
+    day
+    ddf
+    ddg
+  ].freeze
 
   DCG_MAPPING = {
     'USA' => 'USA',
     'CAN' => 'CAN'
   }.freeze
 
-  DBC_VALUES = ['1', '2', '9'].freeze
+  DBC_VALUES = %w[1 2 9].freeze
 
   DAY_MAPPING = {
     'BLK' => 'Black',
