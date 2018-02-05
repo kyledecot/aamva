@@ -20,7 +20,7 @@ RSpec.describe AAMVA::Decoder do
           },
           {
             "subfile_type"=>"ZO",
-            "offset"=> 208,
+            "offset"=> 320,
             "length"=> 24
           }
         ])
@@ -43,7 +43,7 @@ RSpec.describe AAMVA::Decoder do
             ["DAG", "1437 CHESAPEAKE AVE"],
             ["DAI", "COLUMBUS"],
             ["DAJ", "OH"],
-            ["DAK", "432122152"],
+            ["DAK", "432122152  "],
             ["DAQ", "SS430403"],
             ["DCF", "2509UN6813300000"],
             ["DCG", "USA"],
