@@ -5,16 +5,21 @@ module AAMVA
       @barcode = barcode
       @regexp = /\A(?<sub_fille_type>DL|ID)(?<offset>\d{4})(?<length>\d{4})Z\w(\d{4})(\d{4})(\w{2})(?<data_elements>.+)/m
       @header_regexp = /@\n\rANSI (?<issuer_identification_number>\d{6})(?<aamva_version_number>\d{2})(?<jurisdiction_version_number>\d{2})(?<number_of_entries>\d{2})/
-      @subfile_designator_regexp = /(?<subfile_type>DL|ID)(?<offset>\d{4})(?<length>\d{4}).+(\k<subfile_type>)/
-
+      @subfile_designator_regexp = /(?<subfile_designator>(?<subfile_type>DL|ID|Z[A-Z])(?<offset>\d{4})(?<length>\d{4})+)/
     end
 
     def header
       header_match.to_s
     end
 
-    def subfile_designator
-      @barcode.match(@subfile_designator_regexp)&.[](0)
+    def subfile_designators
+      @barcode.scan(@subfile_designator_regexp).map do |subfile_designator|
+        {
+          "subfile_type" => subfile_designator[1],
+          "offset" => subfile_designator[2],
+          "length" => subfile_designator[3]
+        }
+      end
     end
 
     def aamva_version_number

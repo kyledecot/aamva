@@ -10,8 +10,21 @@ RSpec.describe AAMVA::Decoder do
       it { expect(subject.header).to eq("@\n\rANSI 636023080102") }
     end
 
-    describe "#subfile_designator" do
-      it { expect(subject.subfile_designator).to eq("DL00410279ZO03200024DL") }
+    describe "#subfile_designators" do
+      it "decodes correctly" do
+        expect(subject.subfile_designators).to eq([
+          {
+            "subfile_type"=>"DL",
+            "offset"=>"0041",
+            "length"=>"0279"
+          },
+          {
+            "subfile_type"=>"ZO",
+            "offset"=>"0320",
+            "length"=>"0024"
+          }
+        ])
+      end
     end
 
     describe "#aamva_version_number" do
