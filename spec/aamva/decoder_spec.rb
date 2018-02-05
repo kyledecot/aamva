@@ -7,7 +7,7 @@ RSpec.describe AAMVA::Decoder do
     subject { described_class.new(barcode) }
 
     describe "#header" do
-      it { expect(subject.header).to eq("@\n\rANSI 636023080102") }
+      it { expect(subject.header).to eq("@\n\u001E\rANSI 636023080102") }
     end
 
     describe "#subfile_designators" do
@@ -20,7 +20,7 @@ RSpec.describe AAMVA::Decoder do
           },
           {
             "subfile_type"=>"ZO",
-            "offset"=> 0320,
+            "offset"=> 208,
             "length"=> 24
           }
         ])
