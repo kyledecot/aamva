@@ -2,10 +2,10 @@
 
 module AAMVA
   class Decoder
-    def initialize(barcode)
-      @spec = YAML.load_file(File.expand_path('../../../lib/aamva/data/info/2016.yml', __FILE__))
+    def initialize(version, barcode)
+      @version = version
       @barcode = barcode
-      @regexp = /\A(?<sub_fille_type>DL|ID)(?<offset>\d{4})(?<length>\d{4})Z\w(\d{4})(\d{4})(\w{2})(?<data_elements>.+)/m
+      @regexp = /\A(?<subfile_type>DL|ID)(?<offset>\d{4})(?<length>\d{4})Z\w(\d{4})(\d{4})/
       @header_regexp = /@\n\u001E\rANSI (?<issuer_identification_number>\d{6})(?<aamva_version_number>\d{2})(?<jurisdiction_version_number>\d{2})(?<number_of_entries>\d{2})/
       @subfile_designator_regexp = /(?<subfile_designator>(?<subfile_type>DL|ID|Z[A-Z])(?<offset>\d{4})(?<length>\d{4})+)/
     end
