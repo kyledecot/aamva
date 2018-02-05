@@ -3,8 +3,9 @@ require 'spec_helper'
 RSpec.describe AAMVA::Decoder do
   describe "when valid" do
     let(:barcode) { "@\n\u001E\rANSI 636023080102DL00410279ZO03200024DLDBA09142019\nDCSDECOT\nDACKYLE\nDADBRANDON\nDBD10032015\nDBB09141986\nDBC1\nDAYHAZ\nDAU070 IN\nDAG1437 CHESAPEAKE AVE\nDAICOLUMBUS\nDAJOH\nDAK432122152  \nDAQSS430403\nDCF2509UN6813300000\nDCGUSA\nDDEN\nDDFN\nDDGN\nDAZBRO\nDCIUS,OHIO\nDCJNONE\nDCUNONE\nDCE4\nDDAM\nDDB12042013\nDAW170\nDCAD\nDCBA\nDCDNONE\rZOZOAN\nZOBN\nZOE09142019\r" }
+    let(:standard) { AAMVA::Standard.new("2016") }
 
-    subject { described_class.new(AAMVA::Version.new(2016), barcode) }
+    subject { described_class.new(standard, barcode) }
 
     describe "#header" do
       it { expect(subject.header).to eq("@\n\u001E\rANSI 636023080102") }

@@ -2,8 +2,8 @@
 
 module AAMVA
   class Decoder
-    def initialize(version, barcode)
-      @version = version
+    def initialize(standard, barcode)
+      @standard = standard
       @barcode = barcode
       @regexp = /\A(?<subfile_type>DL|ID)(?<offset>\d{4})(?<length>\d{4})Z\w(\d{4})(\d{4})/
       @header_regexp = /@\n\u001E\rANSI (?<issuer_identification_number>\d{6})(?<aamva_version_number>\d{2})(?<jurisdiction_version_number>\d{2})(?<number_of_entries>\d{2})/
