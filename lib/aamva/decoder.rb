@@ -14,6 +14,14 @@ module AAMVA
       header_match.to_s
     end
 
+    def method_missing(method_name, *args)
+      match = subfiles.flatten(1).find { |key, value|  key.downcase.to_sym == method_name }
+
+      super unless match
+
+      match.last
+    end
+
     def subfiles
       subfile_designators.map do |sd|
         @barcode
