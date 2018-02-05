@@ -15,14 +15,14 @@ RSpec.describe AAMVA::Decoder do
       it "decodes correctly" do
         expect(subject.subfile_designators).to match_array([
           {
-            "subfile_type"=>"DL",
-            "offset"=> 41,
-            "length"=> 279
+            "subfile_type" => "DL",
+            "offset" => 41,
+            "length" => 279
           },
           {
-            "subfile_type"=>"ZO",
-            "offset"=> 320,
-            "length"=> 24
+            "subfile_type" => "ZO",
+            "offset" => 320,
+            "length" => 24
           }
         ])
       end
