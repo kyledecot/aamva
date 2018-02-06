@@ -14,20 +14,15 @@ module AAMVA
 
     def subfile_designators
       @data["subfile_designators"].map do |type, designations|
-        [
-          type,
-          designations["length"],
-          designations["offset"],
-          @data["header"]["segment_terminator"],
-        ].join("")
+        "#{type}#{designations["offset"]}#{designations["length"]}"
       end.join("")
     end
 
     def data_elements
       @data["data_elements"].map do |type, data_elements|
-        data_elements.map do |key, value|
-          "#{key}#{value}"
-        end.join(@data["header"]["record_separator"])
+        joined_pairs = data_elements.map { |k, v| "#{k}#{v}" }.join(@data["header"]["data_element_separator"])
+
+        "#{type}#{joined_pairs}#{@data["header"]["segment_terminator"]}"
       end.join("")
     end
 
@@ -40,7 +35,8 @@ module AAMVA
         @data["header"]["file_type"],
         @data["header"]["issuer_identification_number"],
         @data["header"]["aamva_version_number"],
-        @data["header"]["jurisdiction_version_number"]
+        @data["header"]["jurisdiction_version_number"],
+        @data["header"]["number_of_entries"]
       ].join("")
     end
   end
