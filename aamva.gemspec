@@ -25,6 +25,8 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency 'faker'
   spec.add_dependency 'gli', '~> 2.16'
+  spec.add_dependency 'pdf417', '~> 1.0.0'
+  spec.add_dependency 'chunky_png', '~> 1.3.10'
 
   spec.add_development_dependency 'bundler', '~> 1.14'
   spec.add_development_dependency 'guard-rspec', '~> 4.7.3'
