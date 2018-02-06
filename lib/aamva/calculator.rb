@@ -19,6 +19,19 @@ module AAMVA
       end.join("")
     end
 
+    def self.subfile_designators(subfile_designators:)
+      subfile_designators.map do |type, designations|
+        subfile_designator(type: type, designations: designations)
+      end.join("")
+    end
+
+    def self.subfile_designator(type:, designations:)
+      offset = designations.fetch("offset")
+      length = designations.fetch("length")
+
+      "#{type}#{offset}#{length}"
+    end
+
     def self.header(compliance_indicator:, data_element_separator:, record_separator:, segment_terminator:, file_type:, issuer_identification_number:, aamva_version_number:, jurisdiction_version_number:, number_of_entries:)
       [
         compliance_indicator,

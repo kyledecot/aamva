@@ -1,8 +1,7 @@
 module AAMVA
   class Encoder
-    attr_reader :data
-
     def initialize(data)
+      @header_data = data.fetch("header")
       @data = data
     end
 
@@ -25,41 +24,37 @@ module AAMVA
     private
 
     def subfile_designators
-      data.fetch("subfile_designators").map do |type, designations|
-        subfile_designator(type, designations)
-      end.join("")
+      Calculator.subfile_designators(
+        subfile_designators: @data.fetch("subfile_designators")
+      )
     end
 
     def subfile_designator(type, designations)
-      offset = designations.fetch("offset")
-      length = designations.fetch("length")
-
-      "#{type}#{offset}#{length}"
-    end
-
-    def header_data
-      data.fetch("header")
+      Calculator.subfile_designator(
+        type: type,
+        designations: designations
+      )
     end
 
     def subfiles
       Calculator.subfiles(
-        subfiles: data.fetch("subfiles"),
-        data_element_separator: header_data.fetch("data_element_separator"),
-        segment_terminator: header_data.fetch("segment_terminator")
+        subfiles: @data.fetch("subfiles"),
+        data_element_separator: @header_data.fetch("data_element_separator"),
+        segment_terminator: @header_data.fetch("segment_terminator")
       )
     end
 
     def header
       Calculator.header(
-        compliance_indicator: header_data.fetch("compliance_indicator"),
-        data_element_separator: header_data.fetch("data_element_separator"),
-        record_separator: header_data.fetch("record_separator"),
-        segment_terminator: header_data.fetch("segment_terminator"),
-        file_type: header_data.fetch("file_type"),
-        issuer_identification_number: header_data.fetch("issuer_identification_number"),
-        aamva_version_number: header_data.fetch("aamva_version_number"),
-        jurisdiction_version_number: header_data.fetch("jurisdiction_version_number"),
-        number_of_entries: header_data.fetch("number_of_entries")
+        compliance_indicator: @header_data.fetch("compliance_indicator"),
+        data_element_separator: @header_data.fetch("data_element_separator"),
+        record_separator: @header_data.fetch("record_separator"),
+        segment_terminator: @header_data.fetch("segment_terminator"),
+        file_type: @header_data.fetch("file_type"),
+        issuer_identification_number: @header_data.fetch("issuer_identification_number"),
+        aamva_version_number: @header_data.fetch("aamva_version_number"),
+        jurisdiction_version_number: @header_data.fetch("jurisdiction_version_number"),
+        number_of_entries: @header_data.fetch("number_of_entries")
       )
     end
 
