@@ -25,6 +25,10 @@ module AAMVA
       end.join("")
     end
 
+    def self.subfile_offset
+      "TODO"
+    end
+
     def self.subfile_designator(type:, designations:)
       offset = designations.fetch("offset")
       length = designations.fetch("length")
