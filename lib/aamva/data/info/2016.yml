@@ -1,3 +1,9 @@
+compliance_indicator: "@"
+record_separator: "\u001E"
+data_element_separator: "\u000A"
+segment_terminator: "\u000D"
+aamva_version_number: "08"
+file_type: "ANSI "
 truncation_indicators:
   - T
   - U
