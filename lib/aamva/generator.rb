@@ -49,7 +49,8 @@ module AAMVA
         "compliance_indicator" => compliance_indicator,
         "data_element_separator" => data_element_separator,
         "record_separator" => record_separator,
-        "segment_terminator" => segment_terminator
+        "segment_terminator" => segment_terminator,
+        "file_type" => file_type
       }
     end
 
