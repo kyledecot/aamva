@@ -29,13 +29,6 @@ module AAMVA
       )
     end
 
-    def subfile_designator(type, designations)
-      Calculator.subfile_designator(
-        type: type,
-        designations: designations
-      )
-    end
-
     def subfiles
       Calculator.subfiles(
         subfiles: @data.fetch("subfiles"),
@@ -56,10 +49,6 @@ module AAMVA
         jurisdiction_version_number: @header_data.fetch("jurisdiction_version_number"),
         number_of_entries: @header_data.fetch("number_of_entries")
       )
-    end
-
-    def join(items, separator = "")
-      items.join(separator)
     end
   end
 end
