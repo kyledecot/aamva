@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require 'gli'
-require 'pdf417'
 require 'aamva/version'
 
 module AAMVA
@@ -15,9 +14,8 @@ module AAMVA
         standard = AAMVA::Standard.new("2016")
         data = AAMVA::Generator.new(standard).dl
         encoder = AAMVA::Encoder.new(data)
-        barcode = PDF417.new(encoder.string)
 
-        puts barcode.to_png
+        puts encoder.png
       end
     end
 

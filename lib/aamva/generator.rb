@@ -4,7 +4,7 @@ require 'faker'
 
 module AAMVA
   class Generator
-    def initialize(standard)7
+    def initialize(standard)
       @standard = standard
     end
 

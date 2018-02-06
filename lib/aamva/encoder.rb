@@ -10,6 +10,18 @@ module AAMVA
       "#{header}#{subfile_designators}#{subfiles}"
     end
 
+    def pdf417
+      @pdf417 ||= begin
+        require "pdf417"
+
+        PDF417.new(string, aspect_ratio: 1, error_level: 6)
+      end
+    end
+
+    def png
+      @png ||= pdf417.to_chunky_png(margin: 0, x_scale: 1, y_scale: 10)
+    end
+
     private
 
     def subfile_designators
