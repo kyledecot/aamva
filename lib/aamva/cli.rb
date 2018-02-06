@@ -9,6 +9,16 @@ module AAMVA
 
     version AAMVA::VERSION
 
+    command ['encode'] do |c|
+      c.action do |_global, _options, _args|
+        standard = AAMVA::Standard.new("2016")
+        data = AAMVA::Generator.new(standard).dl
+        encoder = AAMVA::Encoder.new(data)
+
+        puts encoder.string
+      end
+    end
+
     command ['generate:day'] do |c|
       c.action do |_global, _options, _args|
         puts AAMVA::Generator.day

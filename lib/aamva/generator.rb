@@ -11,12 +11,13 @@ module AAMVA
     def dl
       {
         "header" => header,
-        "subfile_designators" => subfile_designators
+        "subfile_designators" => subfile_designators,
+        "subfiles" => subfiles
       }
     end
 
-    def data_elements
-      @data_elements ||= {
+    def subfiles
+      @subfiles ||= {
         "DL" => {
           "DBB" => dbb,
           "DBA" => dba,
@@ -44,7 +45,7 @@ module AAMVA
         "issuer_identification_number" => issuer_identification_number,
         "aamva_version_number" => aamva_version_number,
         "jurisdiction_version_number" => jurisdiction_version_number,
-        "number_of_entries" => number_of_entries(data_elements),
+        "number_of_entries" => number_of_entries(subfiles),
         "compliance_indicator" => compliance_indicator,
         "data_element_separator" => data_element_separator,
         "record_separator" => record_separator,
@@ -53,7 +54,7 @@ module AAMVA
     end
 
     def subfile_designators
-      @subfile_designators ||= Hash[data_elements.map do |type, elements|
+      @subfile_designators ||= Hash[subfiles.map do |type, elements|
         [
           type,
           {
@@ -96,8 +97,8 @@ module AAMVA
       @standard.spec["aamva_version_number"]
     end
 
-    def number_of_entries(data_elements)
-      "#{data_elements.size}".rjust(2, "0")
+    def number_of_entries(subfiles)
+      "#{subfiles.size}".rjust(2, "0")
     end
 
     def subfile_type

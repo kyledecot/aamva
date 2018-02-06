@@ -7,37 +7,55 @@ module AAMVA
     end
 
     def string
-      "#{header}#{subfile_designators}#{data_elements}"
+      "#{header}#{subfile_designators}#{subfiles}"
     end
 
     private
 
     def subfile_designators
-      @data["subfile_designators"].map do |type, designations|
-        "#{type}#{designations["offset"]}#{designations["length"]}"
-      end.join("")
+      join(@data.fetch("subfile_designators").map do |type, designations|
+        subfile_designator(type, designations)
+      end)
     end
 
-    def data_elements
-      @data["data_elements"].map do |type, data_elements|
-        joined_pairs = data_elements.map { |k, v| "#{k}#{v}" }.join(@data["header"]["data_element_separator"])
+    def subfile_designator(type, designations)
+      "#{type}#{designations.fetch("offset")}#{designations.fetch("length")}"
+    end
 
-        "#{type}#{joined_pairs}#{@data["header"]["segment_terminator"]}"
-      end.join("")
+    def subfiles
+      join(@data.fetch("subfiles").map do |type, data_elements|
+        subfile(type, data_elements)
+      end)
+    end
+
+    def subfile(type, data_elements)
+      joined_pairs = join(data_elements.map { |k, v| "#{k}#{v}" }, @data["header"]["data_element_separator"])
+
+      "#{type}#{joined_pairs}#{@data["header"]["segment_terminator"]}"
     end
 
     def header
-      [
-        @data["header"]["compliance_indicator"],
-        @data["header"]["data_element_separator"],
-        @data["header"]["record_separator"],
-        @data["header"]["segment_terminator"],
-        @data["header"]["file_type"],
-        @data["header"]["issuer_identification_number"],
-        @data["header"]["aamva_version_number"],
-        @data["header"]["jurisdiction_version_number"],
-        @data["header"]["number_of_entries"]
-      ].join("")
+      header_data = @data.fetch("header")
+
+      join([
+        header_data.fetch("compliance_indicator"),
+        header_data.fetch("data_element_separator"),
+        header_data.fetch("record_separator"),
+        header_data.fetch("segment_terminator"),
+        header_data.fetch("file_type"),
+        header_data.fetch("issuer_identification_number"),
+        header_data.fetch("aamva_version_number"),
+        header_data.fetch("jurisdiction_version_number"),
+        header_data.fetch("number_of_entries")
+      ])
+    end
+
+    def data_element(data_element)
+
+    end
+
+    def join(items, separator = "")
+      items.join(separator)
     end
   end
 end

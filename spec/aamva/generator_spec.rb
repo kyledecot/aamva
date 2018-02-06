@@ -31,8 +31,6 @@ RSpec.describe AAMVA::Generator do
 
   describe "#subfile_designators" do
     it "generates successfully" do
-      data_elements = generator.data_elements
-
       expect(generator.subfile_designators).to eq(
         "DL" => {
           "length" => "TODO",

@@ -15,7 +15,7 @@ RSpec.describe AAMVA::Encoder do
           "record_separator" => "\u001E",
           "segment_terminator" => "\u000D"
         },
-        "data_elements" => {
+        "subfiles" => {
           "DL" => {
             "DBA" => "09142019",
             "DCS" => "DECOT",
