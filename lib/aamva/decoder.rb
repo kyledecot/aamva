@@ -25,8 +25,8 @@ module AAMVA
     def subfiles
       subfile_designators.map do |sd|
         @barcode
-          .byteslice(sd['offset'], sd['length'])
-          .slice((sd['subfile_type']).length..-1)
+          .byteslice(sd["offset"], sd["length"])
+          .slice((sd["subfile_type"]).length..-1)
           .chomp("\r")
           .split("\n")
           .map { |r| [r[0, 3], r[3..-1]] }
@@ -38,27 +38,27 @@ module AAMVA
         .scan(@subfile_designator_regexp)
         .map do |subfile_designator|
         {
-          'subfile_type' => subfile_designator[1],
-          'offset' => subfile_designator[2].to_i,
-          'length' => subfile_designator[3].to_i
+          "subfile_type" => subfile_designator[1],
+          "offset" => subfile_designator[2].to_i,
+          "length" => subfile_designator[3].to_i
         }
       end
     end
 
     def aamva_version_number
-      header_match&.[]('aamva_version_number')
+      header_match&.[]("aamva_version_number")
     end
 
     def issuer_identification_number
-      header_match&.[]('issuer_identification_number')
+      header_match&.[]("issuer_identification_number")
     end
 
     def jurisdiction_version_number
-      header_match&.[]('jurisdiction_version_number')
+      header_match&.[]("jurisdiction_version_number")
     end
 
     def number_of_entries
-      header_match&.[]('number_of_entries')
+      header_match&.[]("number_of_entries")
     end
 
     private

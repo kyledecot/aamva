@@ -20,8 +20,12 @@ module AAMVA
       '99'
     end
 
-    def self.number_of_entries
-      '1'
+    def self.subfile_designator(type = "DL")
+
+    end
+
+    def self.number_of_entries(subfiles)
+      "#{subfiles.size}".rjust(2, "0")
     end
 
     def self.subfile_type

@@ -5,15 +5,15 @@ RSpec.describe AAMVA::Decoder do
     let(:barcode) { "@\n\u001E\rANSI 636023080102DL00410279ZO03200024DLDBA09142019\nDCSDECOT\nDACKYLE\nDADBRANDON\nDBD10032015\nDBB09141986\nDBC1\nDAYHAZ\nDAU070 IN\nDAG1437 CHESAPEAKE AVE\nDAICOLUMBUS\nDAJOH\nDAK432122152  \nDAQSS430403\nDCF2509UN6813300000\nDCGUSA\nDDEN\nDDFN\nDDGN\nDAZBRO\nDCIUS,OHIO\nDCJNONE\nDCUNONE\nDCE4\nDDAM\nDDB12042013\nDAW170\nDCAD\nDCBA\nDCDNONE\rZOZOAN\nZOBN\nZOE09142019\r" }
     let(:standard) { AAMVA::Standard.new("2016") }
 
-    subject { described_class.new(standard, barcode) }
+    subject(:decoder) { described_class.new(standard, barcode) }
 
     describe "#header" do
-      it { expect(subject.header).to eq("@\n\u001E\rANSI 636023080102") }
+      it { expect(decoder.header).to eq("@\n\u001E\rANSI 636023080102") }
     end
 
     describe "#subfile_designators" do
       it "decodes correctly" do
-        expect(subject.subfile_designators).to match_array([
+        expect(decoder.subfile_designators).to match_array([
           {
             "subfile_type" => "DL",
             "offset" => 41,
@@ -30,7 +30,7 @@ RSpec.describe AAMVA::Decoder do
 
     describe "#subfiles" do
       it "decodes correctly" do
-        expect(subject.subfiles).to match_array([
+        expect(decoder.subfiles).to match_array([
           [
             ["DBA", "09142019"],
             ["DCS", "DECOT"],
@@ -73,39 +73,39 @@ RSpec.describe AAMVA::Decoder do
     end
 
     describe "#aamva_version_number" do
-      it { expect(subject.aamva_version_number).to eq("08") }
+      it { expect(decoder.aamva_version_number).to eq("08") }
     end
 
     describe "#issuer_identification_number" do
-      it { expect(subject.issuer_identification_number).to eq("636023") }
+      it { expect(decoder.issuer_identification_number).to eq("636023") }
     end
 
     describe "#jurisdiction_version_number" do
-      it { expect(subject.jurisdiction_version_number).to eq("01") }
+      it { expect(decoder.jurisdiction_version_number).to eq("01") }
     end
 
     describe "#number_of_entries" do
-      it { expect(subject.number_of_entries).to eq("02") }
+      it { expect(decoder.number_of_entries).to eq("02") }
     end
 
     describe "#day" do
-      it { expect(subject.day).to eq('HAZ') }
+      it { expect(decoder.day).to eq('HAZ') }
     end
 
     describe "#dcs" do
-      it { expect(subject.dcs).to eq('DECOT') }
+      it { expect(decoder.dcs).to eq('DECOT') }
     end
 
     describe "#dac" do
-      it { expect(subject.dac).to eq('KYLE') }
+      it { expect(decoder.dac).to eq('KYLE') }
     end
 
     describe "#dad" do
-      it { expect(subject.dad).to eq('BRANDON') }
+      it { expect(decoder.dad).to eq('BRANDON') }
     end
 
     describe "#dba" do
-      it { expect(subject.dba).to eq('09142019') }
+      it { expect(decoder.dba).to eq('09142019') }
     end
   end
 end
