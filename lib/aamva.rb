@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require 'aamva/version'
-require 'aamva/card'
 require 'aamva/cli'
 require 'aamva/generator'
 require 'aamva/info'
