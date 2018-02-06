@@ -24,19 +24,15 @@ RSpec.describe AAMVA::Generator do
         "compliance_indicator" => standard.spec["compliance_indicator"],
         "data_element_separator" => standard.spec["data_element_separator"],
         "record_separator" => standard.spec["record_separator"],
-        "segment_terminator" => standard.spec["segment_terminator"]
+        "segment_terminator" => standard.spec["segment_terminator"],
+        "file_type" => standard.spec["file_type"]
       )
     end
   end
 
   describe "#subfile_designators" do
-    it "generates successfully" do
-      expect(generator.subfile_designators).to eq(
-        "DL" => {
-          "length" => "TODO",
-          "offset" => "TODO"
-        }
-      )
-    end
+    subject { generator.subfile_designators }
+
+    it { is_expected.to have_key("DL") }
   end
 end

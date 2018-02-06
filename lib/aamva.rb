@@ -9,6 +9,7 @@ require 'aamva/validator'
 require 'aamva/decoder'
 require 'aamva/standard'
 require 'aamva/encoder'
+require 'aamva/calculator'
 
 module AAMVA
   SPECIAL_CHARACTERS = "!\"#%&'()*+,-./:;<=>?[\\]^_@ ".chars

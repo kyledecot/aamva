@@ -56,10 +56,17 @@ module AAMVA
 
     def subfile_designators
       @subfile_designators ||= Hash[subfiles.map do |type, elements|
+        length = Calculator::subfile_length(
+          type: type,
+          data_elements: elements,
+          data_element_separator: header["data_element_separator"],
+          segment_terminator: header["segment_terminator"]
+        )
+
         [
           type,
           {
-            "length" => "TODO",
+            "length" => length,
             "offset" => "TODO"
           }
         ]
