@@ -25,9 +25,9 @@ module AAMVA
     private
 
     def subfile_designators
-      join(data.fetch("subfile_designators").map do |type, designations|
+      data.fetch("subfile_designators").map do |type, designations|
         subfile_designator(type, designations)
-      end)
+      end.join("")
     end
 
     def subfile_designator(type, designations)
@@ -37,34 +37,30 @@ module AAMVA
       "#{type}#{offset}#{length}"
     end
 
-    def subfiles
-      join(data.fetch("subfiles").map do |type, data_elements|
-        subfile(type, data_elements)
-      end)
+    def header_data
+      data.fetch("header")
     end
 
-    def subfile(type, data_elements)
-      joined_pairs = data_elements
-        .map { |k, v| "#{k}#{v}" }
-        .join(data["header"]["data_element_separator"])
-
-      "#{type}#{joined_pairs}#{data["header"]["segment_terminator"]}"
+    def subfiles
+      Calculator.subfiles(
+        subfiles: data.fetch("subfiles"),
+        data_element_separator: header_data.fetch("data_element_separator"),
+        segment_terminator: header_data.fetch("segment_terminator")
+      )
     end
 
     def header
-      header_data = data.fetch("header")
-
-      join([
-        header_data.fetch("compliance_indicator"),
-        header_data.fetch("data_element_separator"),
-        header_data.fetch("record_separator"),
-        header_data.fetch("segment_terminator"),
-        header_data.fetch("file_type"),
-        header_data.fetch("issuer_identification_number"),
-        header_data.fetch("aamva_version_number"),
-        header_data.fetch("jurisdiction_version_number"),
-        header_data.fetch("number_of_entries")
-      ])
+      Calculator.header(
+        compliance_indicator: header_data.fetch("compliance_indicator"),
+        data_element_separator: header_data.fetch("data_element_separator"),
+        record_separator: header_data.fetch("record_separator"),
+        segment_terminator: header_data.fetch("segment_terminator"),
+        file_type: header_data.fetch("file_type"),
+        issuer_identification_number: header_data.fetch("issuer_identification_number"),
+        aamva_version_number: header_data.fetch("aamva_version_number"),
+        jurisdiction_version_number: header_data.fetch("jurisdiction_version_number"),
+        number_of_entries: header_data.fetch("number_of_entries")
+      )
     end
 
     def join(items, separator = "")
