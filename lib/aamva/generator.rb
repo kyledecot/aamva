@@ -100,10 +100,6 @@ module AAMVA
       DBC_VALUES.sample
     end
 
-    def dag
-      truncate(Faker::Address.street_address, length: 35)
-    end
-
     def dai
       truncate(Faker::Address.city, length: 20)
     end
@@ -120,22 +116,12 @@ module AAMVA
       chars.sample(6).join('')
     end
 
-    def dcf
-      chars = ('A'..'Z').to_a + ('0'..'9').to_a
-
-      chars.sample(25).join('')
-    end
-
     def ddf
       Info.all['truncation_indicators'].sample
     end
 
     def ddg
       Info.all['truncation_indicators'].sample
-    end
-
-    def dcg
-      DCG_MAPPING.keys.sample
     end
 
     # Physical Description - Eye Color

@@ -22,6 +22,14 @@ module AAMVA
         chars = ('A'..'Z').to_a + ('0'..'9').to_a
 
         chars.sample(25).join('')
+      when "country_identification"
+        DCG_MAPPING.keys.sample
+      when "document_discriminator"
+        chars = ('A'..'Z').to_a + ('0'..'9').to_a
+
+        chars.sample(25).join('')
+      when "street_address"
+        truncate(Faker::Address.street_address, length: 35)
       else
         raise "Unsupported Factory Type: #{type}"
       end

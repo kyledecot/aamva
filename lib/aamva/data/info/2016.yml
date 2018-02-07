@@ -42,6 +42,8 @@ data_elements:
     data_element: Document Discriminator
     definition: Number must uniquely identify a particular document issued to that customer from others that may have been issued in the past. This number may serve multiple purposes of document discrimination, audit information number, and/or inventory control.
     regexp: \A[\d\w]{1,25}\z
+    factory:
+      type: document_discriminator
   dai:
     required: true
     data_element: Address – City
@@ -101,6 +103,8 @@ data_elements:
     data_element: Country Identification
     definition: Country in which DL/ID is issued. U.S. = USA, Canada = CAN.
     regexp: \A(USA|CAN)\z
+    factory:
+      type: country_identification
   dde:
     required: true
     data_element: Family name truncation
@@ -117,3 +121,5 @@ data_elements:
     data_element: Address – Street 1
     definition: Street portion of the cardholder address.
     regexp: \A[A-Za-z\d["!", "\"", "#", "%", "&", "'", "(", ")", "*", "+", ",", "-", ".", "\/", ":", ";", "<", "=", ">", "?", "[", "\\", "]", "^", "_", "@", " "]]{1,35}\z
+    factory:
+      type: street_address
