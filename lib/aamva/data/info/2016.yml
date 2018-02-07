@@ -16,18 +16,22 @@ data_elements:
     data_element: Date of Birth
     definition: Date on which the cardholder was born. (MMDDCCYY for U.S., CCYYMMDD for Canada)
     regexp: \A[\d+]{8,8}\z
-    generator:
+    factory:
       type: date
   dba:
     required: true
     data_element: Document Expiration Date
     definition: Date on which the driving and identification privileges granted by the document are no longer valid. (MMDDCCYY for U.S., CCYYMMDD for Canada)
     regexp: \A[\d+]{8,8}\z
+    factory:
+      type: date
   dbd:
     required: true
     data_element: Document Issue Date
     definition: Date on which the document was issued. (MMDDCCYY for U.S., CCYYMMDD for Canada)
     regexp: \A[\d+]{8,8}\z
+    factory:
+      type: date
   daj:
     required: true
     data_element: Address – Jurisdiction Code
@@ -48,7 +52,7 @@ data_elements:
     data_element: Address – Postal Code
     definition: Postal code portion of the cardholder address in the U.S. and Canada. If the trailing portion of the postal code in the U.S. is not known, zeros will be used to fill the trailing set of numbers up to nine (9) digits.
     regexp: \A[\d\w]{11}\z
-    generator:
+    factory:
       type: postal_code
   dcb:
     required: true
@@ -64,7 +68,7 @@ data_elements:
       Centimeters (cm): number of centimeters followed by " cm"
       ex. 181 centimeters="181 cm"
     regexp: \A[\d]{3} (in|cm)\z
-    generator:
+    factory:
       type: height
   dcd:
     required: true
@@ -76,21 +80,21 @@ data_elements:
     data_element: Customer Middle Name(s)
     definition: Middle name(s) of the cardholder. In the case of multiple middle names they shall be separated by a comma “,”.
     regexp: \A[\w\,]{1,40}\z
-    generator:
+    factory:
       type: first_name
   dcs:
     required: true
     data_element: Customer Family Name
     definition: Family name of the cardholder. (Family name is sometimes also called “last name” or “surname.”) Collect full name for record, print as many characters as possible on portrait side of DL/ID.
     regexp: \A[\w\,\']{1,40}\z
-    generator:
+    factory:
       type: last_name
   daq:
     required: true
     data_element: Customer ID Number
     definition: The number assigned or calculated by the issuing authority.
     regexp: \A[\d\w]{1,25}\z
-    generator:
+    factory:
       type: customer_id_number
   dcg:
     required: true
@@ -101,7 +105,7 @@ data_elements:
     required: true
     data_element: Family name truncation
     definition: A code that indicates whether a field has been truncated (T), has not been truncated (N), or – unknown whether truncated (U).
-    generator:
+    factory:
       type: truncation_indicator
   dca:
     required: true

@@ -73,9 +73,9 @@ module AAMVA
     end
 
     def method_missing(name, *args)
-      generator_type = Info.data_element(name)&.dig("generator", "type")
+      factory_type = Info.data_element(name)&.dig("factory", "type")
 
-      case generator_type
+      case factory_type
       when "date"
         Faker::Date.backward.strftime(DATE_FORMATS[:usa])
       when "first_name"
@@ -119,10 +119,6 @@ module AAMVA
 
     def dbc
       DBC_VALUES.sample
-    end
-
-    def dba
-      Faker::Date.forward.strftime(DATE_FORMATS[:usa])
     end
 
     def dag
@@ -171,12 +167,6 @@ module AAMVA
 
     def dac
       Faker::Name.first_name[0..MAX_DAC_LENGTH]
-    end
-
-    # Document Issue Date
-
-    def dbd
-      Faker::Date.backward.strftime(DATE_FORMATS[:usa])
     end
 
     private
