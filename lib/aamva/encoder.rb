@@ -30,7 +30,9 @@ module AAMVA
     end
 
     def subfile_designators
-      @subfile_designators ||= data.subfile_designators.map(&:string).join("")
+      @subfile_designators ||= data.subfile_designators.map do |designator|
+        "#{designator.type}#{designator.offset}#{designator.length}"
+      end.join("")
     end
 
     def subfiles

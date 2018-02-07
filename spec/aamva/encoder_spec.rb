@@ -2,35 +2,6 @@ require "spec_helper"
 
 RSpec.describe AAMVA::Encoder do
   describe ".string" do
-    let(:data) do
-      {
-        "header" => {
-          "aamva_version_number" => '08',
-          "compliance_indicator" => "@",
-          "data_element_separator" => "\u000A",
-          "file_type" => "ANSI ",
-          "issuer_identification_number" => '636023',
-          "jurisdiction_version_number" => '01',
-          "number_of_entries" => "02",
-          "record_separator" => "\u001E",
-          "segment_terminator" => "\u000D"
-        },
-        "subfiles" => {
-
-        },
-        "subfile_designators" => {
-          "DL" => {
-            "offset" => "0041",
-            "length" => "0279"
-          },
-          "ZO" => {
-            "offset" => "0320",
-            "length" => "0024"
-          }
-        }
-      }
-    end
-
     it "encodes correctly" do
       standard = AAMVA::Standard.new("2016")
 
@@ -84,18 +55,15 @@ RSpec.describe AAMVA::Encoder do
 
       header = AAMVA::Header.new(
         standard: standard,
-        issuer_identification_number: data["header"]["issuer_identification_number"],
-        number_of_entries: data["header"]["number_of_entries"],
-        jurisdiction_version_number: data["header"]["jurisdiction_version_number"]
+        issuer_identification_number: '636023',
+        number_of_entries: '02',
+        jurisdiction_version_number: '01'
       )
 
-      subfile_designators = data["subfile_designators"].map do |type, designations|
-        AAMVA::SubfileDesignator.new(
-          type: type,
-          length: designations["length"],
-          offset: designations["offset"]
-        )
-      end
+      subfile_designators = [
+        AAMVA::SubfileDesignator.new(type: "DL", offset: "0041", length: '0279'),
+        AAMVA::SubfileDesignator.new(type: "ZO", offset: "0320", length: '0024')
+      ]
 
       data = AAMVA::Data.new(
         header: header,
