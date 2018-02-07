@@ -2,12 +2,11 @@
 
 module AAMVA
   class Decoder
+    attr_reader :standard, :barcode
+
     def initialize(standard, barcode)
       @standard = standard
       @barcode = barcode
-      @regexp = /\A(?<subfile_type>DL|ID)(?<offset>\d{4})(?<length>\d{4})Z\w(\d{4})(\d{4})/
-      @header_regexp = /@\n\u001E\rANSI (?<issuer_identification_number>\d{6})(?<aamva_version_number>\d{2})(?<jurisdiction_version_number>\d{2})(?<number_of_entries>\d{2})/
-      @subfile_designator_regexp = /(?<subfile_designator>(?<subfile_type>DL|ID|Z[A-Z])(?<offset>\d{4})(?<length>\d{4})+)/
     end
 
     def data
@@ -37,7 +36,7 @@ module AAMVA
 
     def subfile_designators
       @barcode
-        .scan(@subfile_designator_regexp)
+        .scan(@standard.spec["subfile_designator_regexp"])
         .map do |subfile_designator|
           SubfileDesignator.new(
             type: subfile_designator[1],
@@ -75,7 +74,7 @@ module AAMVA
     end
 
     def header_match
-      @barcode.match(@header_regexp)
+      @barcode.match(standard.spec["header_regexp"])
     end
   end
 end

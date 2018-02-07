@@ -4,6 +4,8 @@ data_element_separator: "\u000A"
 segment_terminator: "\u000D"
 aamva_version_number: "08"
 file_type: "ANSI "
+subfile_designator_regexp: !ruby/regexp '/(?<subfile_designator>(?<subfile_type>DL|ID|Z[A-Z])(?<offset>\d{4})(?<length>\d{4})+)/'
+header_regexp: !ruby/regexp '/@\n\u001E\rANSI (?<issuer_identification_number>\d{6})(?<aamva_version_number>\d{2})(?<jurisdiction_version_number>\d{2})(?<number_of_entries>\d{2})/'
 truncation_indicators:
   - T
   - U
