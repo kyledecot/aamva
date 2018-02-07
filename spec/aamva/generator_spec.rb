@@ -33,6 +33,6 @@ RSpec.describe AAMVA::Generator do
   describe "#subfile_designators" do
     subject { generator.subfile_designators }
 
-    it { is_expected.to have_key("DL") }
+    it { expect(subject.length).to eq(1) }
   end
 end

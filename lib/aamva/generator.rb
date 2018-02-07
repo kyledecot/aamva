@@ -55,7 +55,7 @@ module AAMVA
     end
 
     def subfile_designators
-      @subfile_designators ||= Hash[subfiles.map do |type, elements|
+      @subfile_designators ||= subfiles.map do |type, elements|
         length = Calculator.subfile_length(
           type: type,
           data_elements: elements,
@@ -65,14 +65,12 @@ module AAMVA
 
         offset = Calculator.subfile_offset
 
-        [
-          type,
-          {
-            "length" => length,
-            "offset" => offset
-          }
-        ]
-      end]
+        SubfileDesignator.new(
+          type: type,
+          length: length,
+          offset: offset
+        )
+      end
     end
 
     def file_type
