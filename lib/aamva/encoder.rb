@@ -26,9 +26,7 @@ module AAMVA
     private
 
     def subfile_designators
-      Calculator.subfile_designators(
-        subfile_designators: @subfile_designators
-      )
+      @subfile_designators.map(&:string).join("")
     end
 
     def subfiles

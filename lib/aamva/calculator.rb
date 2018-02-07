@@ -19,10 +19,6 @@ module AAMVA
       end.join("")
     end
 
-    def self.subfile_designators(subfile_designators:)
-      subfile_designators.map(&:string).join("")
-    end
-
     def self.subfile_offset
       "TODO"
     end
