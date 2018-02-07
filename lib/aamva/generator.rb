@@ -72,6 +72,18 @@ module AAMVA
       }
     end
 
+    def method_missing(name, *args)
+      generator_type = Info.data_element(name)&.dig("generator", "type")
+
+      case generator_type
+      when "date" then Faker::Date.backward.strftime(DATE_FORMATS[:usa])
+      when "first_name" then truncate(Faker::Name.first_name, length: 40)
+      when "last_name" then truncate(Faker::Name.last_name, length: 40)
+      else
+        super
+      end
+    end
+
     def issuer_identification_number
       '123456'
     end
@@ -94,14 +106,6 @@ module AAMVA
 
     def dba
       Faker::Date.forward.strftime(DATE_FORMATS[:usa])
-    end
-
-    def dcs
-      truncate(Faker::Name.last_name, length: 40)
-    end
-
-    def dad
-      truncate(Faker::Name.first_name, length: 40)
     end
 
     def dau
@@ -174,12 +178,6 @@ module AAMVA
 
     def dac
       Faker::Name.first_name[0..MAX_DAC_LENGTH]
-    end
-
-    # Date of Birth
-
-    def dbb
-      Faker::Date.birthday.strftime(DATE_FORMATS[:usa])
     end
 
     # Document Issue Date

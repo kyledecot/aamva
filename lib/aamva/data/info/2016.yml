@@ -16,6 +16,8 @@ data_elements:
     data_element: Date of Birth
     definition: Date on which the cardholder was born. (MMDDCCYY for U.S., CCYYMMDD for Canada)
     regexp: \A[\d+]{8,8}\z
+    generator:
+      type: date
   dba:
     required: true
     data_element: Document Expiration Date
@@ -70,11 +72,15 @@ data_elements:
     data_element: Customer Middle Name(s)
     definition: Middle name(s) of the cardholder. In the case of multiple middle names they shall be separated by a comma “,”.
     regexp: \A[\w\,]{1,40}\z
+    generator:
+      type: first_name
   dcs:
     required: true
     data_element: Customer Family Name
     definition: Family name of the cardholder. (Family name is sometimes also called “last name” or “surname.”) Collect full name for record, print as many characters as possible on portrait side of DL/ID.
     regexp: \A[\w\,\']{1,40}\z
+    generator:
+      type: last_name
   daq:
     required: true
     data_element: Customer ID Number
