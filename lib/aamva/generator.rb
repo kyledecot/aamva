@@ -49,7 +49,6 @@ module AAMVA
     def subfiles
       @subfiles ||= {
         "DL" => Subfile.new(
-          standard: @standard,
           type: "DL",
           data_elements: {
             "DBB" => dbb,

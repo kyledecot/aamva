@@ -20,18 +20,10 @@ module AAMVA
     end
 
     def subfiles
-      subfile_designators.map do |sd|
-        data_elements = @barcode
-          .byteslice(sd.offset, sd.length)
-          .slice((sd.type).length..-1)
-          .chomp("\r")
-          .split("\n")
-          .map { |r| [r[0, 3], r[3..-1]] }
-
+      subfile_designators.map do |subfile_designator|
         Subfile.new(
-          standard: @standard,
-          type: sd.type,
-          data_elements: data_elements
+          type: subfile_designator.type,
+          data_elements: data_elements(subfile_designator)
         )
       end
     end
@@ -65,6 +57,15 @@ module AAMVA
     end
 
     private
+
+    def data_elements(subfile_designator)
+      @barcode
+        .byteslice(subfile_designator.offset, subfile_designator.length)
+        .slice((subfile_designator.type).length..-1)
+        .chomp("\r")
+        .split("\n")
+        .map { |r| [r[0, 3], r[3..-1]] }
+    end
 
     def header_match
       @barcode.match(@header_regexp)

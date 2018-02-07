@@ -41,7 +41,6 @@ RSpec.describe AAMVA::Decoder do
       it "decodes correctly" do
         expect(decoder.subfiles).to match_array([
           AAMVA::Subfile.new(
-            standard: standard,
             type: "DL",
             data_elements: [
               ["DBA", "09142019"],
@@ -77,7 +76,6 @@ RSpec.describe AAMVA::Decoder do
             ]
           ),
           AAMVA::Subfile.new(
-            standard: standard,
             type: "ZO",
             data_elements: [
               ["ZOA", "N"],

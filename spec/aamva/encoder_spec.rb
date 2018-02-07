@@ -7,7 +7,6 @@ RSpec.describe AAMVA::Encoder do
 
       subfiles =  {
         "DL" => AAMVA::Subfile.new(
-          standard: standard,
           type: "DL",
           data_elements: {
             "DBA" => "09142019",
@@ -43,7 +42,6 @@ RSpec.describe AAMVA::Encoder do
           }
         ),
         "ZO" => AAMVA::Subfile.new(
-          standard: standard,
           type: "ZO",
           data_elements: {
             "ZOA" => "N",
