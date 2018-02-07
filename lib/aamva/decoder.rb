@@ -23,13 +23,13 @@ module AAMVA
       @barcode
         .byteslice(subfile_designator.offset, subfile_designator.length)
         .slice((subfile_designator.type).length..-1)
-        .chomp("\r") # TODO
-        .split("\n") # TODO
+        .chomp(standard["segment_terminator"])
+        .split(standard["data_element_separator"])
         .map { |r| [r[0, 3], r[3..-1]] }
     end
 
     def header_match
-      @barcode.match(standard.spec["header_regexp"])
+      @barcode.match(standard["header_regexp"])
     end
 
     def header
@@ -51,7 +51,7 @@ module AAMVA
 
     def subfile_designators
       @barcode
-        .scan(@standard.spec["subfile_designator_regexp"])
+        .scan(@standard["subfile_designator_regexp"])
         .map do |_, type, offset, length|
           SubfileDesignator.new(
             type: type,
@@ -59,10 +59,6 @@ module AAMVA
             length: length.to_i
           )
       end
-    end
-
-    def aamva_version_number
-      header_match&.[]("aamva_version_number")
     end
 
     def issuer_identification_number

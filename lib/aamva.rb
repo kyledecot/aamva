@@ -44,7 +44,6 @@ module AAMVA
 
   DBC_VALUES = %w[1 2 9].freeze
 
-
   DAY_MAPPING = {
     'BLK' => 'Black',
     'BLU' => 'Blue',
