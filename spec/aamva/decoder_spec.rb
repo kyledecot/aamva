@@ -11,7 +11,6 @@ RSpec.describe AAMVA::Decoder do
       it "decodes correctly" do
         expect(decoder.header).to eq(
           AAMVA::Header.new(
-            standard: standard,
             number_of_entries: '02',
             jurisdiction_version_number: '01',
             issuer_identification_number: '636023'

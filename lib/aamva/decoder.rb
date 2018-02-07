@@ -10,9 +10,16 @@ module AAMVA
       @subfile_designator_regexp = /(?<subfile_designator>(?<subfile_type>DL|ID|Z[A-Z])(?<offset>\d{4})(?<length>\d{4})+)/
     end
 
+    def data
+      @data ||= Data.new(
+        header: header,
+        subfile_designators: subfile_designators,
+        subfiles: subfiles
+      )
+    end
+
     def header
       @header ||= Header.new(
-        standard: @standard,
         number_of_entries: number_of_entries,
         jurisdiction_version_number: jurisdiction_version_number,
         issuer_identification_number: issuer_identification_number

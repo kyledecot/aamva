@@ -52,7 +52,6 @@ RSpec.describe AAMVA::Encoder do
       }
 
       header = AAMVA::Header.new(
-        standard: standard,
         issuer_identification_number: '636023',
         number_of_entries: '02',
         jurisdiction_version_number: '01'

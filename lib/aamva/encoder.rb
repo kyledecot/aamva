@@ -26,7 +26,17 @@ module AAMVA
     private
 
     def header
-      @header ||= @data.header.string
+      @header ||= Calculator.header(
+        issuer_identification_number: @data.header.issuer_identification_number,
+        number_of_entries: @data.header.number_of_entries,
+        jurisdiction_version_number: @data.header.jurisdiction_version_number,
+        compliance_indicator: @standard.spec.fetch("compliance_indicator"),
+        data_element_separator: @standard.spec.fetch("data_element_separator"),
+        record_separator: @standard.spec.fetch("record_separator"),
+        segment_terminator: @standard.spec.fetch("segment_terminator"),
+        file_type: @standard.spec.fetch("file_type"),
+        aamva_version_number: @standard.spec.fetch("aamva_version_number"),
+      )
     end
 
     def subfile_designators
