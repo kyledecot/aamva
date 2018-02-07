@@ -7,5 +7,11 @@ module AAMVA
       @type = type
       @data_elements = data_elements
     end
+
+    def ==(other)
+      standard == other.standard &&
+        type == other.type &&
+        data_elements == other.data_elements
+    end
   end
 end

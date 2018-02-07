@@ -19,22 +19,20 @@ module AAMVA
       )
     end
 
-    def method_missing(method_name, *args)
-      match = subfiles.flatten(1).find { |key, value|  key.downcase.to_sym == method_name }
-
-      super unless match
-
-      match.last
-    end
-
     def subfiles
       subfile_designators.map do |sd|
-        @barcode
+        data_elements = @barcode
           .byteslice(sd.offset, sd.length)
           .slice((sd.type).length..-1)
           .chomp("\r")
           .split("\n")
           .map { |r| [r[0, 3], r[3..-1]] }
+
+        Subfile.new(
+          standard: @standard,
+          type: sd.type,
+          data_elements: data_elements
+        )
       end
     end
 

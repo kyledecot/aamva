@@ -40,43 +40,51 @@ RSpec.describe AAMVA::Decoder do
     describe "#subfiles" do
       it "decodes correctly" do
         expect(decoder.subfiles).to match_array([
-          [
-            ["DBA", "09142019"],
-            ["DCS", "DECOT"],
-            ["DAC", "KYLE"],
-            ["DAD", "BRANDON"],
-            ["DBD", "10032015"],
-            ["DBB", "09141986"],
-            ["DBC", "1"],
-            ["DAY", "HAZ"],
-            ["DAU", "070 IN"],
-            ["DAG", "1437 CHESAPEAKE AVE"],
-            ["DAI", "COLUMBUS"],
-            ["DAJ", "OH"],
-            ["DAK", "432122152  "],
-            ["DAQ", "SS430403"],
-            ["DCF", "2509UN6813300000"],
-            ["DCG", "USA"],
-            ["DDE", "N"],
-            ["DDF", "N"],
-            ["DDG", "N"],
-            ["DAZ", "BRO"],
-            ["DCI", "US,OHIO"],
-            ["DCJ", "NONE"],
-            ["DCU", "NONE"],
-            ["DCE", "4"],
-            ["DDA", "M"],
-            ["DDB", "12042013"],
-            ["DAW", "170"],
-            ["DCA", "D"],
-            ["DCB", "A"],
-            ["DCD", "NONE"]
-          ],
-          [
-            ["ZOA", "N"],
-            ["ZOB", "N"],
-            ["ZOE", "09142019"]
-          ]
+          AAMVA::Subfile.new(
+            standard: standard,
+            type: "DL",
+            data_elements: [
+              ["DBA", "09142019"],
+              ["DCS", "DECOT"],
+              ["DAC", "KYLE"],
+              ["DAD", "BRANDON"],
+              ["DBD", "10032015"],
+              ["DBB", "09141986"],
+              ["DBC", "1"],
+              ["DAY", "HAZ"],
+              ["DAU", "070 IN"],
+              ["DAG", "1437 CHESAPEAKE AVE"],
+              ["DAI", "COLUMBUS"],
+              ["DAJ", "OH"],
+              ["DAK", "432122152  "],
+              ["DAQ", "SS430403"],
+              ["DCF", "2509UN6813300000"],
+              ["DCG", "USA"],
+              ["DDE", "N"],
+              ["DDF", "N"],
+              ["DDG", "N"],
+              ["DAZ", "BRO"],
+              ["DCI", "US,OHIO"],
+              ["DCJ", "NONE"],
+              ["DCU", "NONE"],
+              ["DCE", "4"],
+              ["DDA", "M"],
+              ["DDB", "12042013"],
+              ["DAW", "170"],
+              ["DCA", "D"],
+              ["DCB", "A"],
+              ["DCD", "NONE"]
+            ]
+          ),
+          AAMVA::Subfile.new(
+            standard: standard,
+            type: "ZO",
+            data_elements: [
+              ["ZOA", "N"],
+              ["ZOB", "N"],
+              ["ZOE", "09142019"]
+            ]
+          )
         ])
       end
     end
@@ -95,26 +103,6 @@ RSpec.describe AAMVA::Decoder do
 
     describe "#number_of_entries" do
       it { expect(decoder.number_of_entries).to eq("02") }
-    end
-
-    describe "#day" do
-      it { expect(decoder.day).to eq('HAZ') }
-    end
-
-    describe "#dcs" do
-      it { expect(decoder.dcs).to eq('DECOT') }
-    end
-
-    describe "#dac" do
-      it { expect(decoder.dac).to eq('KYLE') }
-    end
-
-    describe "#dad" do
-      it { expect(decoder.dad).to eq('BRANDON') }
-    end
-
-    describe "#dba" do
-      it { expect(decoder.dba).to eq('09142019') }
     end
   end
 end
