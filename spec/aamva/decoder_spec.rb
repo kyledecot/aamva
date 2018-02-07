@@ -8,7 +8,16 @@ RSpec.describe AAMVA::Decoder do
     subject(:decoder) { described_class.new(standard, barcode) }
 
     describe "#header" do
-      it { expect(decoder.header).to eq("@\n\u001E\rANSI 636023080102") }
+      it "decodes correctly" do
+        expect(decoder.header).to eq(
+          AAMVA::Header.new(
+            standard: standard,
+            number_of_entries: '02',
+            jurisdiction_version_number: '01',
+            issuer_identification_number: '636023'
+          )
+        )
+      end
     end
 
     describe "#subfile_designators" do

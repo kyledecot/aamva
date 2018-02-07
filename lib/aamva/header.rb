@@ -1,10 +1,19 @@
 module AAMVA
   class Header
+    attr_reader :standard, :number_of_entries, :jurisdiction_version_number, :issuer_identification_number
+
     def initialize(standard:, number_of_entries:, jurisdiction_version_number:, issuer_identification_number:)
       @standard = standard
       @number_of_entries = number_of_entries
       @jurisdiction_version_number = jurisdiction_version_number
       @issuer_identification_number = issuer_identification_number
+    end
+
+    def ==(other)
+      standard == other.standard &&
+        number_of_entries == other.number_of_entries &&
+        jurisdiction_version_number == other.jurisdiction_version_number &&
+        issuer_identification_number == other.issuer_identification_number
     end
 
     def string

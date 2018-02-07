@@ -11,7 +11,12 @@ module AAMVA
     end
 
     def header
-      header_match.to_s
+      @header ||= Header.new(
+        standard: @standard,
+        number_of_entries: number_of_entries,
+        jurisdiction_version_number: jurisdiction_version_number,
+        issuer_identification_number: issuer_identification_number
+      )
     end
 
     def method_missing(method_name, *args)
