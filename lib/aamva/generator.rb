@@ -75,30 +75,9 @@ module AAMVA
     def method_missing(name, *args)
       factory_type = Info.data_element(name)&.dig("factory", "type")
 
-      case factory_type
-      when "date"
-        Faker::Date.backward.strftime(DATE_FORMATS[:usa])
-      when "first_name"
-        truncate(Faker::Name.first_name, length: 40)
-      when "last_name"
-        truncate(Faker::Name.last_name, length: 40)
-      when "truncation_indicator"
-        Info.all['truncation_indicators'].sample
-      when "postal_code"
-        chars = ('A'..'Z').to_a + ('0'..'9').to_a
+      return Factory.build(factory_type) unless factory_type.nil?
 
-        chars.sample(11).join('')
-      when "height"
-        height = ('000'..'999').to_a.sample
-
-        "#{height} #{LENGTH_UNITS.first}"
-      when "customer_id_number"
-        chars = ('A'..'Z').to_a + ('0'..'9').to_a
-
-        chars.sample(25).join('')
-      else
-        super
-      end
+      super
     end
 
     def issuer_identification_number

@@ -13,6 +13,7 @@ require 'aamva/header'
 require 'aamva/subfile_designator'
 require 'aamva/subfile'
 require 'aamva/data'
+require 'aamva/factory'
 
 module AAMVA
   UPPER_ALPHA_CHARACTERS = ('A'..'Z').to_a
