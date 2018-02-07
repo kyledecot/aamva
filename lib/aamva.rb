@@ -15,11 +15,9 @@ require 'aamva/subfile'
 require 'aamva/data'
 
 module AAMVA
-  SPECIAL_CHARACTERS = "!\"#%&'()*+,-./:;<=>?[\\]^_@ ".chars
   UPPER_ALPHA_CHARACTERS = ('A'..'Z').to_a
   LOWER_ALPHA_CHARACTERS = ('a'..'z').to_a
   ALPHA_CHARACTERS = UPPER_ALPHA_CHARACTERS + LOWER_ALPHA_CHARACTERS
-  NUMERIC_CHARACTERS = ('0'..'9').to_a
 
   LENGTH_UNITS = %w[in cm].freeze
 

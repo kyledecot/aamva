@@ -7,9 +7,9 @@ RSpec.describe AAMVA::Decoder do
 
     subject(:decoder) { described_class.new(standard, barcode) }
 
-    describe "#header" do
-      it "decodes correctly" do
-        expect(decoder.header).to eq(
+    describe "#data" do
+      it "decodes header correctly" do
+        expect(decoder.data.header).to eq(
           AAMVA::Header.new(
             number_of_entries: '02',
             jurisdiction_version_number: '01',
@@ -17,11 +17,9 @@ RSpec.describe AAMVA::Decoder do
           )
         )
       end
-    end
 
-    describe "#subfile_designators" do
-      it "decodes correctly" do
-        expect(decoder.subfile_designators).to match_array([
+      it "decodes subfile_designators correctly" do
+        expect(decoder.data.subfile_designators).to match_array([
           AAMVA::SubfileDesignator.new(
             type: "DL",
             offset: 41,
@@ -34,11 +32,9 @@ RSpec.describe AAMVA::Decoder do
           )
         ])
       end
-    end
 
-    describe "#subfiles" do
-      it "decodes correctly" do
-        expect(decoder.subfiles).to match_array([
+      it "decodes subfiles correctly" do
+        expect(decoder.data.subfiles).to match_array([
           AAMVA::Subfile.new(
             type: "DL",
             data_elements: [
@@ -84,22 +80,6 @@ RSpec.describe AAMVA::Decoder do
           )
         ])
       end
-    end
-
-    describe "#aamva_version_number" do
-      it { expect(decoder.aamva_version_number).to eq("08") }
-    end
-
-    describe "#issuer_identification_number" do
-      it { expect(decoder.issuer_identification_number).to eq("636023") }
-    end
-
-    describe "#jurisdiction_version_number" do
-      it { expect(decoder.jurisdiction_version_number).to eq("01") }
-    end
-
-    describe "#number_of_entries" do
-      it { expect(decoder.number_of_entries).to eq("02") }
     end
   end
 end

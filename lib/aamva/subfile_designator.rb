@@ -9,7 +9,9 @@ module AAMVA
     end
 
     def ==(other)
-      type == other.type && offset == other.offset && length == other.length
+      type == other.type &&
+        offset == other.offset &&
+        length == other.length
     end
   end
 end

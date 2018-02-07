@@ -17,6 +17,21 @@ module AAMVA
       )
     end
 
+    private
+
+    def data_elements(subfile_designator)
+      @barcode
+        .byteslice(subfile_designator.offset, subfile_designator.length)
+        .slice((subfile_designator.type).length..-1)
+        .chomp("\r") # TODO
+        .split("\n") # TODO
+        .map { |r| [r[0, 3], r[3..-1]] }
+    end
+
+    def header_match
+      @barcode.match(standard.spec["header_regexp"])
+    end
+
     def header
       @header ||= Header.new(
         number_of_entries: number_of_entries,
@@ -60,21 +75,6 @@ module AAMVA
 
     def number_of_entries
       header_match&.[]("number_of_entries")
-    end
-
-    private
-
-    def data_elements(subfile_designator)
-      @barcode
-        .byteslice(subfile_designator.offset, subfile_designator.length)
-        .slice((subfile_designator.type).length..-1)
-        .chomp("\r")
-        .split("\n")
-        .map { |r| [r[0, 3], r[3..-1]] }
-    end
-
-    def header_match
-      @barcode.match(standard.spec["header_regexp"])
     end
   end
 end
