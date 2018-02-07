@@ -76,9 +76,26 @@ module AAMVA
       generator_type = Info.data_element(name)&.dig("generator", "type")
 
       case generator_type
-      when "date" then Faker::Date.backward.strftime(DATE_FORMATS[:usa])
-      when "first_name" then truncate(Faker::Name.first_name, length: 40)
-      when "last_name" then truncate(Faker::Name.last_name, length: 40)
+      when "date"
+        Faker::Date.backward.strftime(DATE_FORMATS[:usa])
+      when "first_name"
+        truncate(Faker::Name.first_name, length: 40)
+      when "last_name"
+        truncate(Faker::Name.last_name, length: 40)
+      when "truncation_indicator"
+        Info.all['truncation_indicators'].sample
+      when "postal_code"
+        chars = ('A'..'Z').to_a + ('0'..'9').to_a
+
+        chars.sample(11).join('')
+      when "height"
+        height = ('000'..'999').to_a.sample
+
+        "#{height} #{LENGTH_UNITS.first}"
+      when "customer_id_number"
+        chars = ('A'..'Z').to_a + ('0'..'9').to_a
+
+        chars.sample(25).join('')
       else
         super
       end
@@ -108,12 +125,6 @@ module AAMVA
       Faker::Date.forward.strftime(DATE_FORMATS[:usa])
     end
 
-    def dau
-      height = ('000'..'999').to_a.sample
-
-      "#{height} #{LENGTH_UNITS.first}"
-   end
-
     def dag
       truncate(Faker::Address.street_address, length: 35)
     end
@@ -140,16 +151,6 @@ module AAMVA
       chars.sample(25).join('')
     end
 
-    def dak
-      chars = ('A'..'Z').to_a + ('0'..'9').to_a
-
-      chars.sample(11).join('')
-    end
-
-    def dde
-      Info.all['truncation_indicators'].sample
-    end
-
     def ddf
       Info.all['truncation_indicators'].sample
     end
@@ -160,14 +161,6 @@ module AAMVA
 
     def dcg
       DCG_MAPPING.keys.sample
-    end
-
-    # Customer ID Number
-
-    def daq
-      chars = ('A'..'Z').to_a + ('0'..'9').to_a
-
-      chars.sample(25).join('')
     end
 
     # Physical Description - Eye Color

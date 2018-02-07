@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'forwardable'
+
 module AAMVA
   class Standard
     attr_reader :spec
