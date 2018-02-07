@@ -4,7 +4,7 @@ require 'faker'
 
 module AAMVA
   class Generator
-    attr
+    attr_reader :standard
 
     def initialize(standard)
       @standard = standard
