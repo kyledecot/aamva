@@ -37,11 +37,11 @@ module AAMVA
     def subfile_designators
       @barcode
         .scan(@standard.spec["subfile_designator_regexp"])
-        .map do |subfile_designator|
+        .map do |_, type, offset, length|
           SubfileDesignator.new(
-            type: subfile_designator[1],
-            offset: subfile_designator[2].to_i,
-            length: subfile_designator[3].to_i
+            type: type,
+            offset: offset.to_i,
+            length: length.to_i
           )
       end
     end

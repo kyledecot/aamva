@@ -15,12 +15,12 @@ module AAMVA
       @pdf417 ||= begin
         require "pdf417"
 
-        PDF417.new(string, aspect_ratio: 1, error_level: 6)
+        PDF417.new(string)
       end
     end
 
     def png
-      @png ||= pdf417.to_chunky_png(margin: 0, x_scale: 1, y_scale: 10)
+      @png ||= pdf417.to_chunky_png
     end
 
     private
