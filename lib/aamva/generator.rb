@@ -22,8 +22,7 @@ module AAMVA
       @header ||= Header.new(
         issuer_identification_number: issuer_identification_number,
         jurisdiction_version_number: jurisdiction_version_number,
-        number_of_entries:  subfiles.size,
-        standard: @standard
+        number_of_entries:  subfiles.size
       )
     end
 
