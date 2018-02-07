@@ -21,7 +21,7 @@ module AAMVA
 
     def data_elements(subfile_designator)
       @barcode
-        .byteslice(subfile_designator.offset, subfile_designator.length)
+        .byteslice(subfile_designator.offset.to_i, subfile_designator.length.to_i)
         .slice((subfile_designator.type).length..-1)
         .chomp(standard["segment_terminator"])
         .split(standard["data_element_separator"])
@@ -55,8 +55,8 @@ module AAMVA
         .map do |_, type, offset, length|
           SubfileDesignator.new(
             type: type,
-            offset: offset.to_i,
-            length: length.to_i
+            offset: offset,
+            length: length
           )
       end
     end

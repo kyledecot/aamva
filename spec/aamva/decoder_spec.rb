@@ -22,13 +22,13 @@ RSpec.describe AAMVA::Decoder do
         expect(decoder.data.subfile_designators).to match_array([
           AAMVA::SubfileDesignator.new(
             type: "DL",
-            offset: 41,
-            length: 279
+            offset: "0041",
+            length: "0279"
           ),
           AAMVA::SubfileDesignator.new(
             type: "ZO",
-            offset: 320,
-            length: 24
+            offset: "0320",
+            length: "0024"
           )
         ])
       end
