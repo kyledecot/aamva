@@ -9,6 +9,7 @@ require 'aamva/decoder'
 require 'aamva/standard'
 require 'aamva/encoder'
 require 'aamva/calculator'
+require 'aamva/header'
 
 module AAMVA
   SPECIAL_CHARACTERS = "!\"#%&'()*+,-./:;<=>?[\\]^_@ ".chars
@@ -16,8 +17,6 @@ module AAMVA
   LOWER_ALPHA_CHARACTERS = ('a'..'z').to_a
   ALPHA_CHARACTERS = UPPER_ALPHA_CHARACTERS + LOWER_ALPHA_CHARACTERS
   NUMERIC_CHARACTERS = ('0'..'9').to_a
-
-  CARD_TYPES = %w[dl id].freeze
 
   LENGTH_UNITS = %w[in cm].freeze
 
@@ -43,6 +42,7 @@ module AAMVA
   }.freeze
 
   DBC_VALUES = %w[1 2 9].freeze
+
 
   DAY_MAPPING = {
     'BLK' => 'Black',

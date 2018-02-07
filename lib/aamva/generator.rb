@@ -42,15 +42,15 @@ module AAMVA
 
     def header
       @header ||= {
-        "issuer_identification_number" => issuer_identification_number,
         "aamva_version_number" => aamva_version_number,
-        "jurisdiction_version_number" => jurisdiction_version_number,
-        "number_of_entries" => number_of_entries(subfiles),
         "compliance_indicator" => compliance_indicator,
         "data_element_separator" => data_element_separator,
+        "file_type" => file_type,
+        "issuer_identification_number" => issuer_identification_number,
+        "jurisdiction_version_number" => jurisdiction_version_number,
+        "number_of_entries" => number_of_entries(subfiles),
         "record_separator" => record_separator,
         "segment_terminator" => segment_terminator,
-        "file_type" => file_type
       }
     end
 

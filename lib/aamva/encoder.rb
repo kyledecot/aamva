@@ -6,7 +6,7 @@ module AAMVA
     end
 
     def string
-      "#{header}#{subfile_designators}#{subfiles}"
+      "#{header.string}#{subfile_designators}#{subfiles}"
     end
 
     def pdf417
@@ -38,16 +38,11 @@ module AAMVA
     end
 
     def header
-      Calculator.header(
-        compliance_indicator: @header_data.fetch("compliance_indicator"),
-        data_element_separator: @header_data.fetch("data_element_separator"),
-        record_separator: @header_data.fetch("record_separator"),
-        segment_terminator: @header_data.fetch("segment_terminator"),
-        file_type: @header_data.fetch("file_type"),
+      @header ||= Header.new(
+        standard: AAMVA::Standard.new("2016"),
         issuer_identification_number: @header_data.fetch("issuer_identification_number"),
-        aamva_version_number: @header_data.fetch("aamva_version_number"),
-        jurisdiction_version_number: @header_data.fetch("jurisdiction_version_number"),
-        number_of_entries: @header_data.fetch("number_of_entries")
+        number_of_entries: @header_data.fetch("number_of_entries"),
+        jurisdiction_version_number: @header_data.fetch("jurisdiction_version_number")
       )
     end
   end
