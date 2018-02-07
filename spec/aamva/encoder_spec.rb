@@ -16,7 +16,29 @@ RSpec.describe AAMVA::Encoder do
           "segment_terminator" => "\u000D"
         },
         "subfiles" => {
+
+        },
+        "subfile_designators" => {
           "DL" => {
+            "offset" => "0041",
+            "length" => "0279"
+          },
+          "ZO" => {
+            "offset" => "0320",
+            "length" => "0024"
+          }
+        }
+      }
+    end
+
+    it "encodes correctly" do
+      standard = AAMVA::Standard.new("2016")
+
+      subfiles =  {
+        "DL" => AAMVA::Subfile.new(
+          standard: standard,
+          type: "DL",
+          data_elements: {
             "DBA" => "09142019",
             "DCS" => "DECOT",
             "DAC" => "KYLE",
@@ -47,28 +69,19 @@ RSpec.describe AAMVA::Encoder do
             "DCA" => "D",
             "DCB" => "A",
             "DCD" => "NONE"
-          },
-          "ZO" => {
+          }
+        ),
+        "ZO" => AAMVA::Subfile.new(
+          standard: standard,
+          type: "ZO",
+          data_elements: {
             "ZOA" => "N",
             "ZOB" => "N",
             "ZOE" => "09142019"
-          },
-        },
-        "subfile_designators" => {
-          "DL" => {
-            "offset" => "0041",
-            "length" => "0279"
-          },
-          "ZO" => {
-            "offset" => "0320",
-            "length" => "0024"
           }
-        }
+        )
       }
-    end
 
-    it "encodes correctly" do
-      standard = AAMVA::Standard.new("2016")
       header = AAMVA::Header.new(
         standard: standard,
         issuer_identification_number: data["header"]["issuer_identification_number"],
@@ -84,10 +97,15 @@ RSpec.describe AAMVA::Encoder do
         )
       end
 
-      string = described_class.new(
-        data: data,
+      data = AAMVA::Data.new(
         header: header,
-        subfile_designators: subfile_designators
+        subfile_designators: subfile_designators,
+        subfiles: subfiles,
+      )
+
+      string = described_class.new(
+        standard: standard,
+        data: data,
       ).string
 
       expect(string).to eq("@\n\u001E\rANSI 636023080102DL00410279ZO03200024DLDBA09142019\nDCSDECOT\nDACKYLE\nDADBRANDON\nDBD10032015\nDBB09141986\nDBC1\nDAYHAZ\nDAU070 IN\nDAG1437 CHESAPEAKE AVE\nDAICOLUMBUS\nDAJOH\nDAK432122152  \nDAQSS430403\nDCF2509UN6813300000\nDCGUSA\nDDEN\nDDFN\nDDGN\nDAZBRO\nDCIUS,OHIO\nDCJNONE\nDCUNONE\nDCE4\nDDAM\nDDB12042013\nDAW170\nDCAD\nDCBA\nDCDNONE\rZOZOAN\nZOBN\nZOE09142019\r")

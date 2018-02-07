@@ -9,10 +9,10 @@ module AAMVA
     end
 
     def self.subfiles(subfiles:, data_element_separator:, segment_terminator:)
-      subfiles.map do |type, data_elements|
+      subfiles.map do |type, subfile|
         Calculator.subfile(
           type: type,
-          data_elements: data_elements,
+          data_elements: subfile.data_elements,
           data_element_separator: data_element_separator,
           segment_terminator: segment_terminator
         )

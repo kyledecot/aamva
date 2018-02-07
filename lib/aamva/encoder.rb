@@ -1,14 +1,14 @@
 module AAMVA
   class Encoder
-    def initialize(data:, header:, subfile_designators:)
-      @subfile_designators = subfile_designators
-      @header_data = data.fetch("header")
+    attr_reader :standard, :data
+
+    def initialize(standard:, data:)
+      @standard = standard
       @data = data
-      @header = header
     end
 
     def string
-      "#{@header.string}#{subfile_designators}#{subfiles}"
+      "#{header}#{subfile_designators}#{subfiles}"
     end
 
     def pdf417
@@ -25,15 +25,19 @@ module AAMVA
 
     private
 
+    def header
+      @header ||= @data.header.string
+    end
+
     def subfile_designators
-      @subfile_designators.map(&:string).join("")
+      @subfile_designators ||= data.subfile_designators.map(&:string).join("")
     end
 
     def subfiles
-      Calculator.subfiles(
-        subfiles: @data.fetch("subfiles"),
-        data_element_separator: @header_data.fetch("data_element_separator"),
-        segment_terminator: @header_data.fetch("segment_terminator")
+      @subfiles ||= Calculator.subfiles(
+        subfiles: @data.subfiles,
+        data_element_separator: @standard.spec.fetch("data_element_separator"),
+        segment_terminator: @standard.spec.fetch("segment_terminator")
       )
     end
   end

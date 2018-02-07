@@ -4,24 +4,26 @@ require 'faker'
 
 module AAMVA
   class Generator
+    attr
+
     def initialize(standard)
       @standard = standard
     end
 
     def dl
-      {
-        "header" => header,
-        "subfile_designators" => subfile_designators,
-        "subfiles" => subfiles
-      }
+      Data.new(
+        header: header,
+        subfile_designators: subfile_designators,
+        subfiles: subfiles
+      )
     end
 
     def header
       @header ||= Header.new(
-        standard: @standard,
-        number_of_entries:  subfiles.size,
+        issuer_identification_number: issuer_identification_number,
         jurisdiction_version_number: jurisdiction_version_number,
-        issuer_identification_number: issuer_identification_number
+        number_of_entries:  subfiles.size,
+        standard: @standard
       )
     end
 
@@ -77,7 +79,7 @@ module AAMVA
     end
 
     def jurisdiction_version_number
-      ('00'..'99').sample
+      ('00'..'99').to_a.sample
     end
 
     def dcb
