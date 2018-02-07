@@ -13,7 +13,17 @@ module AAMVA
       c.action do |_global, _options, _args|
         standard = AAMVA::Standard.new("2016")
         data = AAMVA::Generator.new(standard).dl
-        encoder = AAMVA::Encoder.new(data)
+        header = Header.new(
+          standard: standard,
+          issuer_identification_number: data["header"]["issuer_identification_number"],
+          number_of_entries: data["header"]["number_of_entries"],
+          jurisdiction_version_number: data["header"]["jurisdiction_version_number"]
+        )
+
+        encoder = AAMVA::Encoder.new(
+          data: data,
+          header: header
+        )
 
         puts encoder.png
       end

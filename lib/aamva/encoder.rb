@@ -1,12 +1,13 @@
 module AAMVA
   class Encoder
-    def initialize(data)
+    def initialize(data:, header:)
       @header_data = data.fetch("header")
       @data = data
+      @header = header
     end
 
     def string
-      "#{header.string}#{subfile_designators}#{subfiles}"
+      "#{@header.string}#{subfile_designators}#{subfiles}"
     end
 
     def pdf417
@@ -34,15 +35,6 @@ module AAMVA
         subfiles: @data.fetch("subfiles"),
         data_element_separator: @header_data.fetch("data_element_separator"),
         segment_terminator: @header_data.fetch("segment_terminator")
-      )
-    end
-
-    def header
-      @header ||= Header.new(
-        standard: AAMVA::Standard.new("2016"),
-        issuer_identification_number: @header_data.fetch("issuer_identification_number"),
-        number_of_entries: @header_data.fetch("number_of_entries"),
-        jurisdiction_version_number: @header_data.fetch("jurisdiction_version_number")
       )
     end
   end
