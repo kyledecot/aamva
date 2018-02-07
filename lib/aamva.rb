@@ -10,6 +10,7 @@ require 'aamva/standard'
 require 'aamva/encoder'
 require 'aamva/calculator'
 require 'aamva/header'
+require 'aamva/subfile_designator'
 
 module AAMVA
   SPECIAL_CHARACTERS = "!\"#%&'()*+,-./:;<=>?[\\]^_@ ".chars

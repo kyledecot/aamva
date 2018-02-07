@@ -76,9 +76,18 @@ RSpec.describe AAMVA::Encoder do
         jurisdiction_version_number: data["header"]["jurisdiction_version_number"]
       )
 
+      subfile_designators = data["subfile_designators"].map do |type, designations|
+        AAMVA::SubfileDesignator.new(
+          type: type,
+          length: designations["length"],
+          offset: designations["offset"]
+        )
+      end
+
       string = described_class.new(
         data: data,
-        header: header
+        header: header,
+        subfile_designators: subfile_designators
       ).string
 
       expect(string).to eq("@\n\u001E\rANSI 636023080102DL00410279ZO03200024DLDBA09142019\nDCSDECOT\nDACKYLE\nDADBRANDON\nDBD10032015\nDBB09141986\nDBC1\nDAYHAZ\nDAU070 IN\nDAG1437 CHESAPEAKE AVE\nDAICOLUMBUS\nDAJOH\nDAK432122152  \nDAQSS430403\nDCF2509UN6813300000\nDCGUSA\nDDEN\nDDFN\nDDGN\nDAZBRO\nDCIUS,OHIO\nDCJNONE\nDCUNONE\nDCE4\nDDAM\nDDB12042013\nDAW170\nDCAD\nDCBA\nDCDNONE\rZOZOAN\nZOBN\nZOE09142019\r")

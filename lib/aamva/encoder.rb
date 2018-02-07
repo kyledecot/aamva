@@ -1,6 +1,7 @@
 module AAMVA
   class Encoder
-    def initialize(data:, header:)
+    def initialize(data:, header:, subfile_designators:)
+      @subfile_designators = subfile_designators
       @header_data = data.fetch("header")
       @data = data
       @header = header
@@ -26,7 +27,7 @@ module AAMVA
 
     def subfile_designators
       Calculator.subfile_designators(
-        subfile_designators: @data.fetch("subfile_designators")
+        subfile_designators: @subfile_designators
       )
     end
 
