@@ -14,16 +14,16 @@ RSpec.describe AAMVA::Decoder do
     describe "#subfile_designators" do
       it "decodes correctly" do
         expect(decoder.subfile_designators).to match_array([
-          {
-            "subfile_type" => "DL",
-            "offset" => 41,
-            "length" => 279
-          },
-          {
-            "subfile_type" => "ZO",
-            "offset" => 320,
-            "length" => 24
-          }
+          AAMVA::SubfileDesignator.new(
+            type: "DL",
+            offset: 41,
+            length: 279
+          ),
+          AAMVA::SubfileDesignator.new(
+            type: "ZO",
+            offset: 320,
+            length: 24
+          )
         ])
       end
     end

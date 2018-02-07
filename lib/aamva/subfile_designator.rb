@@ -8,12 +8,8 @@ module AAMVA
       @offset = offset
     end
 
-    def eql?(other)
-      type == other.type
-    end
-
-    def hash
-      type.hash
+    def ==(other)
+      type == other.type && offset == other.offset && length == other.length
     end
   end
 end

@@ -25,8 +25,8 @@ module AAMVA
     def subfiles
       subfile_designators.map do |sd|
         @barcode
-          .byteslice(sd["offset"], sd["length"])
-          .slice((sd["subfile_type"]).length..-1)
+          .byteslice(sd.offset, sd.length)
+          .slice((sd.type).length..-1)
           .chomp("\r")
           .split("\n")
           .map { |r| [r[0, 3], r[3..-1]] }
@@ -37,11 +37,11 @@ module AAMVA
       @barcode
         .scan(@subfile_designator_regexp)
         .map do |subfile_designator|
-        {
-          "subfile_type" => subfile_designator[1],
-          "offset" => subfile_designator[2].to_i,
-          "length" => subfile_designator[3].to_i
-        }
+          SubfileDesignator.new(
+            type: subfile_designator[1],
+            offset: subfile_designator[2].to_i,
+            length: subfile_designator[3].to_i
+          )
       end
     end
 
