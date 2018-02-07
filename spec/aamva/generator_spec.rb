@@ -14,22 +14,6 @@ RSpec.describe AAMVA::Generator do
     end
   end
 
-  describe "#header" do
-    it "generates successfully" do
-      expect(generator.header).to eq(
-        "issuer_identification_number" => '123456',
-        "aamva_version_number" => '08',
-        "jurisdiction_version_number" => '99',
-        "number_of_entries" => '01',
-        "compliance_indicator" => standard.spec["compliance_indicator"],
-        "data_element_separator" => standard.spec["data_element_separator"],
-        "record_separator" => standard.spec["record_separator"],
-        "segment_terminator" => standard.spec["segment_terminator"],
-        "file_type" => standard.spec["file_type"]
-      )
-    end
-  end
-
   describe "#subfile_designators" do
     subject { generator.subfile_designators }
 

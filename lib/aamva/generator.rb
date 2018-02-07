@@ -16,51 +16,22 @@ module AAMVA
       }
     end
 
-    def subfiles
-      @subfiles ||= {
-        "DL" => {
-          "DBB" => dbb,
-          "DBA" => dba,
-          "DBD" => dbd,
-          "DAJ" => daj,
-          "DCF" => dcf,
-          "DAI" => dai,
-          "DAK" => dak,
-          "DCB" => dcb,
-          "DAU" => dau,
-          "DCD" => dcd,
-          "DAD" => dad,
-          "DCS" => dcs,
-          "DAQ" => daq,
-          "DCG" => dcg,
-          "DDE" => dde,
-          "DCA" => dca,
-          "dag" => dag,
-        }
-      }
-    end
-
     def header
-      @header ||= {
-        "aamva_version_number" => aamva_version_number,
-        "compliance_indicator" => compliance_indicator,
-        "data_element_separator" => data_element_separator,
-        "file_type" => file_type,
-        "issuer_identification_number" => issuer_identification_number,
-        "jurisdiction_version_number" => jurisdiction_version_number,
-        "number_of_entries" => number_of_entries(subfiles),
-        "record_separator" => record_separator,
-        "segment_terminator" => segment_terminator,
-      }
+      @header ||= Header.new(
+        standard: @standard,
+        number_of_entries:  subfiles.size,
+        jurisdiction_version_number: jurisdiction_version_number,
+        issuer_identification_number: issuer_identification_number
+      )
     end
 
     def subfile_designators
-      @subfile_designators ||= subfiles.map do |type, elements|
+      @subfile_designators ||= subfiles.map do |type, subfile|
         length = Calculator.subfile_length(
           type: type,
-          data_elements: elements,
-          data_element_separator: header["data_element_separator"],
-          segment_terminator: header["segment_terminator"]
+          data_elements: subfile.data_elements,
+          data_element_separator: @standard.spec["data_element_separator"],
+          segment_terminator: @standard.spec["segment_terminator"]
         )
 
         offset = Calculator.subfile_offset
@@ -73,24 +44,32 @@ module AAMVA
       end
     end
 
-    def file_type
-      @standard.spec["file_type"]
-    end
-
-    def data_element_separator
-      @standard.spec["data_element_separator"]
-    end
-
-    def segment_terminator
-      @standard.spec["segment_terminator"]
-    end
-
-    def record_separator
-      @standard.spec["record_separator"]
-    end
-
-    def compliance_indicator
-      @standard.spec["compliance_indicator"]
+    def subfiles
+      @subfiles ||= {
+        "DL" => Subfile.new(
+          standard: @standard,
+          type: "DL",
+          data_elements: {
+            "DBB" => dbb,
+            "DBA" => dba,
+            "DBD" => dbd,
+            "DAJ" => daj,
+            "DCF" => dcf,
+            "DAI" => dai,
+            "DAK" => dak,
+            "DCB" => dcb,
+            "DAU" => dau,
+            "DCD" => dcd,
+            "DAD" => dad,
+            "DCS" => dcs,
+            "DAQ" => daq,
+            "DCG" => dcg,
+            "DDE" => dde,
+            "DCA" => dca,
+            "DAG" => dag,
+          }
+        )
+      }
     end
 
     def issuer_identification_number
@@ -98,27 +77,7 @@ module AAMVA
     end
 
     def jurisdiction_version_number
-      '99'
-    end
-
-    def aamva_version_number
-      @standard.spec["aamva_version_number"]
-    end
-
-    def number_of_entries(subfiles)
-      "#{subfiles.size}".rjust(2, "0")
-    end
-
-    def subfile_type
-      'DL'
-    end
-
-    def offset
-      '4'
-    end
-
-    def length
-      '1'
+      ('00'..'99').sample
     end
 
     def dcb
