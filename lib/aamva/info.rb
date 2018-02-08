@@ -6,11 +6,17 @@ module AAMVA
       @info ||= YAML.load_file(File.expand_path('../data/info/2016.yml', __FILE__))
     end
 
-    def self.factory_type(field)
+    def self.factory(field)
       if data_element?(field)
-        data_element(field)&.dig("factory", "type")
+        {
+          :type => data_element(field)&.dig("factory", "type"),
+          :options => data_element(field)&.dig("factory", "options").to_h
+        }
       elsif header_field?(field)
-        header(field)&.dig("factory", "type")
+        {
+          :type => header(field)&.dig("factory", "type"),
+          :options => header(field)&.dig("factory", "options").to_h
+        }
       end
     end
 

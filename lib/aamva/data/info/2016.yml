@@ -142,12 +142,16 @@ data_elements:
     regexp: (1|2|9)
     factory:
       type: gender
+      options:
+        values: ["1", "2", "9"]
   day:
     required: true
     data_element: Physical Description – Eye Color
     definition: Color of cardholder's eyes. (ANSI D-20 codes)
     factory:
       type: eye_color
+      options:
+        values: ["BLK", "BLU", "BRO", "GRY", "GRN", "HAZ", "MAR", "DIC"]
   dcg:
     required: true
     data_element: Country Identification

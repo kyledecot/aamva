@@ -61,8 +61,8 @@ module AAMVA
     end
 
     def method_missing(name, *args)
-      if factory_type = Info.factory_type(name)
-        Factory.build(factory_type)
+      if factory = Info.factory(name)
+        Factory.build(factory[:type], factory[:options])
       else
         super
       end

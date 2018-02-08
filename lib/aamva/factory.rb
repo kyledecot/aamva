@@ -87,7 +87,7 @@ module AAMVA
     end
 
     def self.gender(options = {})
-      DBC_VALUES.sample
+      options.fetch("values").sample
     end
 
     def self.vehicle_class(options = {})
@@ -97,7 +97,7 @@ module AAMVA
     end
 
     def self.eye_color(options = {})
-      DAY_MAPPING.keys.sample
+      options.fetch("values").sample
     end
 
     def self.truncate(data_element, length:)
