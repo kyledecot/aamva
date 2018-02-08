@@ -21,12 +21,22 @@ module AAMVA
       when "gender" then gender
       when "vehicle_class" then vehicle_class
       when "eye_color" then eye_color
+      when "jurisdiction_version_number" then jurisdiction_version_number
+      when "issuer_identification_number" then issuer_identification_number
       else
         raise "Unsupported Factory Type: #{type}"
       end
     end
 
     private
+
+    def self.jurisdiction_version_number
+      ('00'..'99').to_a.sample
+    end
+
+    def self.issuer_identification_number
+      '123456'
+    end
 
     def self.restriction_codes
       UPPER_ALPHA_CHARACTERS.sample(12).join('')

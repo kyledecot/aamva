@@ -10,6 +10,14 @@ truncation_indicators:
   - T
   - U
   - N
+
+header:
+  issuer_identification_number:
+    factory:
+      type: issuer_identification_number
+  jurisdiction_version_number:
+    factory:
+      type: jurisdiction_version_number
 data_elements:
   dbb:
     required: true

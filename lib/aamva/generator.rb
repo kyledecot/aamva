@@ -61,19 +61,25 @@ module AAMVA
     end
 
     def method_missing(name, *args)
-      factory_type = Info.data_element(name)&.dig("factory", "type")
-
-      return super if factory_type.nil?
-
-      return Factory.build(factory_type)
+      if data_element?(name)
+        factory_type = Info.data_element(name)&.dig("factory", "type")
+        Info.data_element(name)&.dig("factory", "type")
+        Factory.build(factory_type)
+      elsif header_field?(name)
+        info = Info.header(name)
+        factory_type = info.dig("factory", "type")
+        Factory.build(factory_type)
+      else
+        super
+      end
     end
 
-    def issuer_identification_number
-      '123456'
+    def data_element?(name)
+      !!Info.data_element(name)
     end
 
-    def jurisdiction_version_number
-      ('00'..'99').to_a.sample
+    def header_field?(field)
+      !!Info.header(field)
     end
   end
 end

@@ -6,6 +6,10 @@ module AAMVA
       @info ||= YAML.load_file(File.expand_path('../data/info/2016.yml', __FILE__))
     end
 
+    def self.header(field)
+      all['header'][field.to_s]
+    end
+
     def self.required_data_elements
       all['data_elements'].reject { |de| de['required'] }.keys
     end
