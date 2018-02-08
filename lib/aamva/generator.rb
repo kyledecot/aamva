@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'faker'
-
 module AAMVA
   class Generator
     attr_reader :standard
@@ -11,7 +9,7 @@ module AAMVA
     end
 
     def data
-      Data.new(
+      @data ||= Data.new(
         header: header,
         subfile_designators: subfile_designators,
         subfiles: subfiles
@@ -29,9 +27,9 @@ module AAMVA
     end
 
     def subfile_designators
-      @subfile_designators ||= subfiles.map do |type, subfile|
+      @subfile_designators ||= subfiles.map do |_, subfile|
         length = Calculator.subfile_length(
-          type: type,
+          type: subfile.type,
           data_elements: subfile.data_elements,
           data_element_separator: @standard["data_element_separator"],
           segment_terminator: @standard["segment_terminator"]
@@ -40,7 +38,7 @@ module AAMVA
         offset = Calculator.subfile_offset
 
         SubfileDesignator.new(
-          type: type,
+          type: subfile.type,
           length: length,
           offset: offset
         )
@@ -48,30 +46,18 @@ module AAMVA
     end
 
     def subfiles
-      @subfiles ||= {
+      @subfiles ||= begin
+        data_elements = Hash[Info.required_data_elements.map do |type|
+          [type.upcase, send(type)]
+        end]
+
+        {
         "DL" => Subfile.new(
           type: "DL",
-          data_elements: {
-            "DBB" => dbb,
-            "DBA" => dba,
-            "DBD" => dbd,
-            "DAJ" => daj,
-            "DCF" => dcf,
-            "DAI" => dai,
-            "DAK" => dak,
-            "DCB" => dcb,
-            "DAU" => dau,
-            "DCD" => dcd,
-            "DAD" => dad,
-            "DCS" => dcs,
-            "DAQ" => daq,
-            "DCG" => dcg,
-            "DDE" => dde,
-            "DCA" => dca,
-            "DAG" => dag,
-          }
-        )
-      }
+          data_elements: data_elements
+          )
+        }
+      end
     end
 
     def method_missing(name, *args)
@@ -88,28 +74,6 @@ module AAMVA
 
     def jurisdiction_version_number
       ('00'..'99').to_a.sample
-    end
-
-    def dbc
-      DBC_VALUES.sample
-    end
-
-    def ddf
-      Info.all['truncation_indicators'].sample
-    end
-
-    def ddg
-      Info.all['truncation_indicators'].sample
-    end
-
-    # Physical Description - Eye Color
-
-    def day
-      DAY_MAPPING.keys.sample
-    end
-
-    def dac
-      Faker::Name.first_name[0..MAX_DAC_LENGTH]
     end
   end
 end

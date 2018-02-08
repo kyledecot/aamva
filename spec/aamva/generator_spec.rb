@@ -13,4 +13,10 @@ RSpec.describe AAMVA::Generator do
       end
     end
   end
+
+  describe "#data" do
+    it "does not crash" do
+      described_class.new(standard).data
+    end
+  end
 end

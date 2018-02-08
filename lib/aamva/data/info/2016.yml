@@ -106,6 +106,40 @@ data_elements:
     regexp: \A[\d\w]{1,25}\z
     factory:
       type: customer_id_number
+  ddg:
+    required: true
+    data_element: Middle name truncation
+    definition: A code that indicates whether a field has been truncated (T), has not been truncated (N), or – unknown whether truncated (U).
+    factory:
+      type:
+        truncation_indicator
+  dac:
+    required: true
+    data_element: Customer First Name
+    definition: First name of the cardholder.
+    factory:
+      type:
+        first_name
+  ddf:
+    required: true
+    data_element: First name truncation
+    definition: A code that indicates whether a field has been truncated (T), has not been truncated (N), or – unknown whether truncated (U).
+    factory:
+      type:
+        truncation_indicator
+  dbc:
+    required: true
+    data_element: Physical Description – Sex
+    definition: Gender of the cardholder. 1 = male, 2 = female, 9 = not specified.
+    regexp: (1|2|9)
+    factory:
+      type: gender
+  day:
+    required: true
+    data_element: Physical Description – Eye Color
+    definition: Color of cardholder's eyes. (ANSI D-20 codes)
+    factory:
+      type: eye_color
   dcg:
     required: true
     data_element: Country Identification
