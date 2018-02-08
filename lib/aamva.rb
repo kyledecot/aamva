@@ -38,13 +38,6 @@ module AAMVA
     ddg
   ].freeze
 
-  DCG_MAPPING = {
-    'USA' => 'USA',
-    'CAN' => 'CAN'
-  }.freeze
-
-  DBC_VALUES = %w[1 2 9].freeze
-
   DAY_MAPPING = {
     'BLK' => 'Black',
     'BLU' => 'Blue',

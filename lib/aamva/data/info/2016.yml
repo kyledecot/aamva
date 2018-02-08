@@ -159,6 +159,8 @@ data_elements:
     regexp: \A(USA|CAN)\z
     factory:
       type: country_identification
+      options:
+        values: ["USA", "CAN"]
   dde:
     required: true
     data_element: Family name truncation

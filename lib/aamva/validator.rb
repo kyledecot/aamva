@@ -37,13 +37,6 @@ module AAMVA
       true
     end
 
-    def dbc(dbc)
-      return false unless length(dbc, min: 1, max: 1)
-      return false unless DBC_VALUES.include?(dbc)
-
-      true
-    end
-
     def dai(dai)
       return false unless length(dai, min: 1, max: 20)
 

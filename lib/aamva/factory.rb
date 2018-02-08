@@ -43,7 +43,7 @@ module AAMVA
     end
 
     def self.country_identification(options = {})
-      DCG_MAPPING.keys.sample
+      options.fetch("values").sample
     end
 
     def self.postal_code(options = {})
