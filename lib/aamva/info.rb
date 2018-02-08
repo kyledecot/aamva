@@ -6,6 +6,14 @@ module AAMVA
       @info ||= YAML.load_file(File.expand_path('../data/info/2016.yml', __FILE__))
     end
 
+    def self.factory_type(field)
+      if data_element?(field)
+        data_element(field)&.dig("factory", "type")
+      elsif header_field?(field)
+        header(field)&.dig("factory", "type")
+      end
+    end
+
     def self.header(field)
       all['header'][field.to_s]
     end
@@ -16,6 +24,16 @@ module AAMVA
 
     def self.data_element(data_element)
       all['data_elements'][data_element.to_s]
+    end
+
+  private
+
+    def self.data_element?(field)
+      !!data_element(field)
+    end
+
+    def self.header_field?(field)
+      !!header(field)
     end
   end
 end

@@ -61,25 +61,11 @@ module AAMVA
     end
 
     def method_missing(name, *args)
-      if data_element?(name)
-        factory_type = Info.data_element(name)&.dig("factory", "type")
-        Info.data_element(name)&.dig("factory", "type")
-        Factory.build(factory_type)
-      elsif header_field?(name)
-        info = Info.header(name)
-        factory_type = info.dig("factory", "type")
+      if factory_type = Info.factory_type(name)
         Factory.build(factory_type)
       else
         super
       end
-    end
-
-    def data_element?(name)
-      !!Info.data_element(name)
-    end
-
-    def header_field?(field)
-      !!Info.header(field)
     end
   end
 end
