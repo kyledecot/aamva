@@ -37,6 +37,8 @@ data_elements:
     data_element: Address – Jurisdiction Code
     definition: State portion of the cardholder address.
     regexp: \A[\w]{2}\z
+    factory:
+      type: state
   dcf:
     required: true
     data_element: Document Discriminator
@@ -49,6 +51,8 @@ data_elements:
     data_element: Address – City
     definition: City portion of the cardholder address.
     regexp: /\A[\w]{1,20}\z
+    factory:
+      type: city
   dak:
     required: true
     data_element: Address – Postal Code
@@ -61,6 +65,8 @@ data_elements:
     data_element: Jurisdiction- specific restriction codes
     definition: Jurisdiction-specific codes that represent restrictions to driving privileges (such as airbrakes, automatic transmission, daylight only, etc.).
     regexp: \A[\d\w]{1,12}\z
+    factory:
+      type: restriction_codes
   dau:
     required: true
     data_element: Physical Description – Height
@@ -77,6 +83,8 @@ data_elements:
     data_element: Jurisdiction- specific endorsement codes
     definition: Jurisdiction-specific codes that represent additional privileges granted to the cardholder beyond the vehicle class (such as transportation of passengers, hazardous materials, operation of motorcycles, etc.).
     regexp: \A[\d\w]{1,5}\z
+    factory:
+      type: endorsement_codes
   dad:
     required: true
     data_element: Customer Middle Name(s)
@@ -116,6 +124,8 @@ data_elements:
     data_element: Jurisdiction- specific vehicle class
     definition: Jurisdiction-specific vehicle class / group code, designating the type of vehicle the cardholder has privilege to drive.
     regexp: \A[\d\w]{1,6}\z
+    factory:
+      type: vehicle_class
   dag:
     required: true
     data_element: Address – Street 1

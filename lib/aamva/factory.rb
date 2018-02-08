@@ -30,6 +30,20 @@ module AAMVA
         chars.sample(25).join('')
       when "street_address"
         truncate(Faker::Address.street_address, length: 35)
+      when "restriction_codes"
+        UPPER_ALPHA_CHARACTERS.sample(12).join('')
+      when "endorsement_codes"
+        UPPER_ALPHA_CHARACTERS.sample(5).join('')
+      when "city"
+        truncate(Faker::Address.city, length: 20)
+      when "state"
+        chars = ('A'..'Z').to_a
+
+        chars.sample(2).join('')
+      when "vehicle_class"
+        chars = ('A'..'Z').to_a + ('0'..'9').to_a
+
+        chars.sample(6).join('')
       else
         raise "Unsupported Factory Type: #{type}"
       end

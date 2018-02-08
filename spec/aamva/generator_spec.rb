@@ -13,10 +13,4 @@ RSpec.describe AAMVA::Generator do
       end
     end
   end
-
-  describe "#subfile_designators" do
-    subject { generator.subfile_designators }
-
-    it { expect(subject.length).to eq(1) }
-  end
 end

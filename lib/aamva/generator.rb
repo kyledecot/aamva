@@ -10,13 +10,15 @@ module AAMVA
       @standard = standard
     end
 
-    def dl
+    def data
       Data.new(
         header: header,
         subfile_designators: subfile_designators,
         subfiles: subfiles
       )
     end
+
+    private
 
     def header
       @header ||= Header.new(
@@ -75,9 +77,9 @@ module AAMVA
     def method_missing(name, *args)
       factory_type = Info.data_element(name)&.dig("factory", "type")
 
-      return Factory.build(factory_type) unless factory_type.nil?
+      return super if factory_type.nil?
 
-      super
+      return Factory.build(factory_type)
     end
 
     def issuer_identification_number
@@ -88,32 +90,8 @@ module AAMVA
       ('00'..'99').to_a.sample
     end
 
-    def dcb
-      UPPER_ALPHA_CHARACTERS.sample(12).join('')
-    end
-
-    def dcd
-      UPPER_ALPHA_CHARACTERS.sample(5).join('')
-    end
-
     def dbc
       DBC_VALUES.sample
-    end
-
-    def dai
-      truncate(Faker::Address.city, length: 20)
-    end
-
-    def daj
-      chars = ('A'..'Z').to_a
-
-      chars.sample(2).join('')
-    end
-
-    def dca
-      chars = ('A'..'Z').to_a + ('0'..'9').to_a
-
-      chars.sample(6).join('')
     end
 
     def ddf
@@ -132,12 +110,6 @@ module AAMVA
 
     def dac
       Faker::Name.first_name[0..MAX_DAC_LENGTH]
-    end
-
-    private
-
-    def truncate(data_element, length:)
-      data_element[0, length - 1]
     end
   end
 end
