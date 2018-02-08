@@ -3,26 +3,8 @@ require 'faker'
 module AAMVA
   class Factory
     def self.build(type, options = {})
-      case type
-      when "date" then date
-      when "first_name" then first_name
-      when "last_name" then last_name
-      when "truncation_indicator" then truncation_indicator
-      when "postal_code" then postal_code
-      when "height" then height
-      when "customer_id_number" then customer_id_number
-      when "country_identification" then country_identification
-      when "document_discriminator" then document_discriminator
-      when "street_address" then street_address
-      when "restriction_codes" then restriction_codes
-      when "endorsement_codes" then endorsement_codes
-      when "city" then city
-      when "state" then state
-      when "gender" then gender
-      when "vehicle_class" then vehicle_class
-      when "eye_color" then eye_color
-      when "jurisdiction_version_number" then jurisdiction_version_number
-      when "issuer_identification_number" then issuer_identification_number
+      if respond_to?(type)
+        send(type, options)
       else
         raise "Unsupported Factory Type: #{type}"
       end
@@ -30,91 +12,91 @@ module AAMVA
 
     private
 
-    def self.jurisdiction_version_number
+    def self.jurisdiction_version_number(options = {})
       ('00'..'99').to_a.sample
     end
 
-    def self.issuer_identification_number
+    def self.issuer_identification_number(options = {})
       '123456'
     end
 
-    def self.restriction_codes
+    def self.restriction_codes(options = {})
       UPPER_ALPHA_CHARACTERS.sample(12).join('')
     end
 
-    def self.street_address
+    def self.street_address(options = {})
       truncate(Faker::Address.street_address, length: 35)
     end
 
-    def self.document_discriminator
+    def self.document_discriminator(options = {})
       chars = ('A'..'Z').to_a + ('0'..'9').to_a
 
       chars.sample(25).join('')
     end
 
-    def self.truncation_indicator
+    def self.truncation_indicator(options = {})
       Info.all['truncation_indicators'].sample
     end
 
-    def self.last_name
+    def self.last_name(options = {})
       truncate(Faker::Name.last_name, length: 40)
     end
 
-    def self.country_identification
+    def self.country_identification(options = {})
       DCG_MAPPING.keys.sample
     end
 
-    def self.postal_code
+    def self.postal_code(options = {})
       chars = ('A'..'Z').to_a + ('0'..'9').to_a
 
       chars.sample(11).join('')
     end
 
-    def self.customer_id_number
+    def self.customer_id_number(options = {})
       chars = ('A'..'Z').to_a + ('0'..'9').to_a
 
       chars.sample(25).join('')
     end
 
-    def self.height
+    def self.height(options = {})
       height = ('000'..'999').to_a.sample
 
       "#{height} #{LENGTH_UNITS.first}"
     end
 
-    def self.first_name
+    def self.first_name(options = {})
       truncate(Faker::Name.first_name, length: 40)
     end
 
-    def self.date
+    def self.date(options = {})
       Faker::Date.backward.strftime(DATE_FORMATS[:usa])
     end
 
-    def self.endorsement_codes
+    def self.endorsement_codes(options = {})
       UPPER_ALPHA_CHARACTERS.sample(5).join('')
     end
 
-     def self.city
+     def self.city(options = {})
        truncate(Faker::Address.city, length: 20)
      end
 
-    def self.state
+    def self.state(options = {})
       chars = ('A'..'Z').to_a
 
       chars.sample(2).join('')
     end
 
-    def self.gender
+    def self.gender(options = {})
       DBC_VALUES.sample
     end
 
-    def self.vehicle_class
+    def self.vehicle_class(options = {})
       chars = ('A'..'Z').to_a + ('0'..'9').to_a
 
       chars.sample(6).join('')
     end
 
-    def self.eye_color
+    def self.eye_color(options = {})
       DAY_MAPPING.keys.sample
     end
 
