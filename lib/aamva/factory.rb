@@ -67,7 +67,8 @@ module AAMVA
     end
 
     def self.first_name(options = {})
-      truncate(Faker::Name.first_name, length: 40)
+      length = options.fetch('length') 
+      truncate(Faker::Name.first_name, length: length)
     end
 
     def self.date(options = {})
@@ -79,7 +80,8 @@ module AAMVA
     end
 
      def self.city(options = {})
-       truncate(Faker::Address.city, length: 20)
+       length = options.fetch('length')
+       truncate(Faker::Address.city, length: length)
      end
 
     def self.state(options = {})

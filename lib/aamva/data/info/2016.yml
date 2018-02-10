@@ -64,6 +64,8 @@ data_elements:
     regexp: /\A[\w]{1,20}\z
     factory:
       type: city
+      options:
+        length: 20
   dak:
     required: true
     data_element: Address – Postal Code
@@ -103,6 +105,8 @@ data_elements:
     regexp: \A[\w\,]{1,40}\z
     factory:
       type: first_name
+      options:
+        length: 40
   dcs:
     required: true
     data_element: Customer Family Name
