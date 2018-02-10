@@ -12,7 +12,7 @@ module AAMVA
     command ['encode'] do |c|
       c.action do |_global, _options, _args|
         standard = AAMVA::Standard.new("2016")
-        data = AAMVA::Generator.new(standard).dl
+        data = AAMVA::Generator.new(standard).data
         encoder = AAMVA::Encoder.new(
           standard: standard,
           data: data,
