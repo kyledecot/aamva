@@ -141,7 +141,7 @@ data_elements:
     definition: Gender of the cardholder. 1 = male, 2 = female, 9 = not specified.
     regexp: (1|2|9)
     factory:
-      type: gender
+      type: enum
       options:
         values: ["1", "2", "9"]
   day:
@@ -149,7 +149,7 @@ data_elements:
     data_element: Physical Description – Eye Color
     definition: Color of cardholder's eyes. (ANSI D-20 codes)
     factory:
-      type: eye_color
+      type: enum
       options:
         values: ["BLK", "BLU", "BRO", "GRY", "GRN", "HAZ", "MAR", "DIC"]
   dcg:
@@ -158,7 +158,7 @@ data_elements:
     definition: Country in which DL/ID is issued. U.S. = USA, Canada = CAN.
     regexp: \A(USA|CAN)\z
     factory:
-      type: country_identification
+      type: enum
       options:
         values: ["USA", "CAN"]
   dde:

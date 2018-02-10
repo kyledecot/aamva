@@ -11,6 +11,11 @@ module AAMVA
     end
 
     private
+	
+
+    def self.enum(options = {})
+      options.fetch("values").sample 
+    end 
 
     def self.jurisdiction_version_number(options = {})
       ('00'..'99').to_a.sample
@@ -40,10 +45,6 @@ module AAMVA
 
     def self.last_name(options = {})
       truncate(Faker::Name.last_name, length: 40)
-    end
-
-    def self.country_identification(options = {})
-      options.fetch("values").sample
     end
 
     def self.postal_code(options = {})
@@ -86,18 +87,10 @@ module AAMVA
       chars.sample(2).join('')
     end
 
-    def self.gender(options = {})
-      options.fetch("values").sample
-    end
-
     def self.vehicle_class(options = {})
       chars = ('A'..'Z').to_a + ('0'..'9').to_a
 
       chars.sample(6).join('')
-    end
-
-    def self.eye_color(options = {})
-      options.fetch("values").sample
     end
 
     def self.truncate(data_element, length:)
