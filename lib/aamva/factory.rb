@@ -44,7 +44,8 @@ module AAMVA
     end
 
     def self.last_name(options = {})
-      truncate(Faker::Name.last_name, length: 40)
+      length = options.fetch('length')
+      truncate(Faker::Name.last_name, length: length)
     end
 
     def self.postal_code(options = {})

@@ -110,6 +110,8 @@ data_elements:
     regexp: \A[\w\,\']{1,40}\z
     factory:
       type: last_name
+      options:
+        length: 40
   daq:
     required: true
     data_element: Customer ID Number
