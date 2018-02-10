@@ -2,6 +2,7 @@ env:
   global:
     - CC_TEST_REPORTER_ID=0924c08910b176edb9ebc474d67645038730cb6d88da74343c6b6e526af3e88f
 language: ruby
+sudo: false
 rvm:
   - 2.4.1
 before_script:
@@ -14,7 +15,3 @@ script:
 after_script:
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
 
-sudo: false
-language: ruby
-rvm:
-  - 2.4.1
