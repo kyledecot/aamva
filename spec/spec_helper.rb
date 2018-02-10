@@ -3,6 +3,9 @@
 require 'bundler/setup'
 require 'aamva'
 require 'pry'
+require 'simplecov'
+
+SimpleCov.start
 
 Dir[File.dirname(__FILE__) + '/support/**/*.rb'].each { |f| require f }
 
