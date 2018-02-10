@@ -39,10 +39,6 @@ module AAMVA
       chars.sample(25).join('')
     end
 
-    def self.truncation_indicator(options = {})
-      Info.all['truncation_indicators'].sample
-    end
-
     def self.last_name(options = {})
       length = options.fetch('length')
       truncate(Faker::Name.last_name, length: length)

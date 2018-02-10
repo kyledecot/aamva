@@ -128,22 +128,26 @@ data_elements:
     data_element: Middle name truncation
     definition: A code that indicates whether a field has been truncated (T), has not been truncated (N), or – unknown whether truncated (U).
     factory:
-      type:
-        truncation_indicator
+      type: enum
+      options: 
+        values: ["T", "N", "U"]
+ 
   dac:
     required: true
     data_element: Customer First Name
     definition: First name of the cardholder.
     factory:
-      type:
-        first_name
+      type: first_name
+      options:
+        length: 40
   ddf:
     required: true
     data_element: First name truncation
     definition: A code that indicates whether a field has been truncated (T), has not been truncated (N), or – unknown whether truncated (U).
     factory:
-      type:
-        truncation_indicator
+      type: enum
+      options: 
+        values: ["T", "N", "U"]
   dbc:
     required: true
     data_element: Physical Description – Sex
@@ -175,7 +179,9 @@ data_elements:
     data_element: Family name truncation
     definition: A code that indicates whether a field has been truncated (T), has not been truncated (N), or – unknown whether truncated (U).
     factory:
-      type: truncation_indicator
+      type: enum
+      options: 
+        values: ["T", "N", "U"]
   dca:
     required: true
     data_element: Jurisdiction- specific vehicle class
