@@ -17,7 +17,10 @@ header:
       type: issuer_identification_number
   jurisdiction_version_number:
     factory:
-      type: jurisdiction_version_number
+      type: range
+      options:
+        start: '00'
+        end: '99' 
 data_elements:
   dbb:
     required: true

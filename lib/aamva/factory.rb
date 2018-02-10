@@ -11,15 +11,14 @@ module AAMVA
     end
 
     private
-	
 
     def self.enum(options = {})
       options.fetch("values").sample 
     end 
 
-    def self.jurisdiction_version_number(options = {})
-      ('00'..'99').to_a.sample
-    end
+    def self.range(options = {}) 
+      (options.fetch('start')..options.fetch('end')).to_a.sample
+    end 
 
     def self.issuer_identification_number(options = {})
       '123456'
