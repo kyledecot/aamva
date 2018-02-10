@@ -81,9 +81,7 @@ module AAMVA
      end
 
     def self.state(options = {})
-      chars = ('A'..'Z').to_a
-
-      chars.sample(2).join('')
+      Faker::Address.state_abbr      
     end
 
     def self.vehicle_class(options = {})
