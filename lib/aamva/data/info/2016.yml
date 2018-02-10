@@ -14,7 +14,7 @@ truncation_indicators:
 header:
   issuer_identification_number:
     factory:
-      type: issuer_identification_number
+      type: string  
   jurisdiction_version_number:
     factory:
       type: range
@@ -184,3 +184,5 @@ data_elements:
     regexp: \A[A-Za-z\d["!", "\"", "#", "%", "&", "'", "(", ")", "*", "+", ",", "-", ".", "\/", ":", ";", "<", "=", ">", "?", "[", "\\", "]", "^", "_", "@", " "]]{1,35}\z
     factory:
       type: street_address
+      options: 
+        length: 35

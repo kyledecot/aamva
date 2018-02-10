@@ -20,7 +20,7 @@ module AAMVA
       (options.fetch('start')..options.fetch('end')).to_a.sample
     end 
 
-    def self.issuer_identification_number(options = {})
+    def self.string(options = {})
       '123456'
     end
 
@@ -29,7 +29,8 @@ module AAMVA
     end
 
     def self.street_address(options = {})
-      truncate(Faker::Address.street_address, length: 35)
+      length = options.fetch('length')
+      truncate(Faker::Address.street_address, length: length)
     end
 
     def self.document_discriminator(options = {})
