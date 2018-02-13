@@ -21,7 +21,9 @@ module AAMVA
     end 
 
     def self.string(options = {})
-      '123456'
+      value = options.fetch('value', '123456')
+
+      value
     end
 
     def self.restriction_codes(options = {})
