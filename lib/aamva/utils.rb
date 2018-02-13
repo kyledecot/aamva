@@ -1,9 +1,7 @@
 module AAMVA
   class Utils
     def self.truncate(value, options = {})
-      value = value[0, options['length']] if options.key?('length')
-
-      value
+      value[0...options.fetch('length', -1)]
     end
   end
 end
