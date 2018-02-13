@@ -30,17 +30,27 @@ module AAMVA
     end
 
     def self.restriction_codes(options = {})
-      UPPER_ALPHA_CHARACTERS.sample(12).join('')
+      defaults = {
+        'value' => UPPER_ALPHA_CHARACTERS.sample(12).join('')
+      }
+
+      string(defaults.merge(options))
     end
 
     def self.street_address(options = {})
-      length = options.fetch('length')
-      truncate(Faker::Address.street_address, length: length)
+      defaults = {
+        'value' => Faker::Address.street_address
+      }
+
+      string(defaults.merge(options))
     end
 
     def self.last_name(options = {})
-      length = options.fetch('length')
-      truncate(Faker::Name.last_name, length: length)
+      defaults = {
+        'value' => Faker::Name.last_name
+      }
+
+      string(defaults.merge(options))
     end
 
     def self.postal_code(options = {})
@@ -62,8 +72,11 @@ module AAMVA
     end
 
     def self.first_name(options = {})
-      length = options.fetch('length')
-      truncate(Faker::Name.first_name, length: length)
+      defaults = {
+        'value' => Faker::Name.first_name
+      }
+
+      string(defaults.merge(options))
     end
 
     def self.date(options = {})
@@ -75,22 +88,25 @@ module AAMVA
     end
 
      def self.city(options = {})
-       length = options.fetch('length')
-       truncate(Faker::Address.city, length: length)
+       defaults = {
+         'value' => Faker::Address.city
+       }
+
+       string(defaults.merge(options))
      end
 
     def self.state(options = {})
-      Faker::Address.state_abbr
+      defaults = {
+        'value' => Faker::Address.state_abbr
+      }
+
+      string(defaults.merge(options))
     end
 
     def self.vehicle_class(options = {})
       chars = ('A'..'Z').to_a + ('0'..'9').to_a
 
       chars.sample(6).join('')
-    end
-
-    def self.truncate(data_element, length:)
-      data_element[0, length - 1]
     end
 
     def self.random_string(length)
