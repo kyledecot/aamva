@@ -13,15 +13,18 @@ module AAMVA
     private
 
     def self.enum(options = {})
-      options.fetch("values").sample 
-    end 
+      options.fetch("values").sample
+    end
 
-    def self.range(options = {}) 
+    def self.range(options = {})
       (options.fetch('start')..options.fetch('end')).to_a.sample
-    end 
+    end
 
     def self.string(options = {})
-      value = options.fetch('value', '123456')
+      value = options.fetch('value') do
+        random_string(options['truncate']['length'])
+      end
+      value = Utils.truncate(value, options['truncate']) if options.key?('truncate')
 
       value
     end
@@ -33,12 +36,6 @@ module AAMVA
     def self.street_address(options = {})
       length = options.fetch('length')
       truncate(Faker::Address.street_address, length: length)
-    end
-
-    def self.document_discriminator(options = {})
-      chars = ('A'..'Z').to_a + ('0'..'9').to_a
-
-      chars.sample(25).join('')
     end
 
     def self.last_name(options = {})
@@ -65,7 +62,7 @@ module AAMVA
     end
 
     def self.first_name(options = {})
-      length = options.fetch('length') 
+      length = options.fetch('length')
       truncate(Faker::Name.first_name, length: length)
     end
 
@@ -83,7 +80,7 @@ module AAMVA
      end
 
     def self.state(options = {})
-      Faker::Address.state_abbr      
+      Faker::Address.state_abbr
     end
 
     def self.vehicle_class(options = {})
@@ -94,6 +91,12 @@ module AAMVA
 
     def self.truncate(data_element, length:)
       data_element[0, length - 1]
+    end
+
+    def self.random_string(length)
+      chars = ('A'..'Z').to_a + ('0'..'9').to_a
+
+      chars.sample(length).join('')
     end
   end
 end
