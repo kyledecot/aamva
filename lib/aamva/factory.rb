@@ -54,15 +54,19 @@ module AAMVA
     end
 
     def self.postal_code(options = {})
-      chars = ('A'..'Z').to_a + ('0'..'9').to_a
+      defaults = {
+        'value' => random_string(11)
+      }
 
-      chars.sample(11).join('')
+      string(defaults.merge(options))
     end
 
     def self.customer_id_number(options = {})
-      chars = ('A'..'Z').to_a + ('0'..'9').to_a
+      defaults = {
+        'value' => random_string(25)
+      }
 
-      chars.sample(25).join('')
+      string(defaults.merge(options))
     end
 
     def self.height(options = {})
