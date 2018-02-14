@@ -1,11 +1,9 @@
 # frozen_string_literal: true
 
 require 'bundler/setup'
-require 'aamva'
-require 'pry'
 require 'simplecov'
-
-SimpleCov.start
+require 'pry'
+require 'aamva'
 
 Dir[File.dirname(__FILE__) + '/support/**/*.rb'].each { |f| require f }
 
