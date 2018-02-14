@@ -47,7 +47,7 @@ module AAMVA
 
     def subfiles
       @subfiles ||= begin
-        data_elements = Hash[Info.required_data_elements.map do |type|
+        data_elements = Hash[@standard.required_data_elements.map do |type|
           [type.upcase, send(type)]
         end]
 
@@ -61,7 +61,7 @@ module AAMVA
     end
 
     def method_missing(name, *args)
-      if factory = Info.factory(name)
+      if factory = @standard.factory(name)
         Factory.build(factory[:type], factory[:options])
       else
         super
