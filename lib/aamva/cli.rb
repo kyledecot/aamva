@@ -21,11 +21,5 @@ module AAMVA
         puts encoder.png
       end
     end
-
-    command ['generate:day'] do |c|
-      c.action do |_global, _options, _args|
-        puts AAMVA::Generator.day
-      end
-    end
   end
 end
