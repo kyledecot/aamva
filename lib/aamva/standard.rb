@@ -6,10 +6,17 @@ module AAMVA
   class Standard
     attr_reader :spec
 
+    class UnsupportedStandard < StandardError
+    end
+
     extend Forwardable
 
     def initialize(year)
-      @spec = YAML.load_file(File.expand_path("../../../lib/aamva/data/info/#{year}.yml", __FILE__))
+      path = File.expand_path("../../../lib/aamva/data/info/#{year}.yml", __FILE__)
+
+      raise UnsupportedStandard, "Unsupported Standard: #{year}" unless File.exists?(path)
+
+      @spec = YAML.load_file(path)
     end
 
     def_delegators :@spec, :[]

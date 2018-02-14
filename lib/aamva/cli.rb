@@ -11,11 +11,12 @@ module AAMVA
 
     command ['encode'] do |c|
       c.flag [:f, :format], :type => String, :default_value => 'string'
+      c.flag [:s, :standard], :type => String, :default_value => '2016'
 
       c.action do |_global, options, _args|
-        format = options.fetch(:format, 'png')
+        format = options.fetch(:format)
+        standard = Standard.new(options.fetch(:standard))
 
-        standard = AAMVA::Standard.new("2016")
         data = AAMVA::Generator.new(standard).data
         encoder = AAMVA::Encoder.new(
           standard: standard,
