@@ -20,8 +20,8 @@ module AAMVA
 
     def header
       @header ||= Header.new(
-        issuer_identification_number: issuer_identification_number,
-        jurisdiction_version_number: jurisdiction_version_number,
+        issuer_identification_number: factory(:issuer_identification_number),
+        jurisdiction_version_number: factory(:jurisdiction_version_number),
         number_of_entries:  subfiles.size
       )
     end
@@ -48,7 +48,7 @@ module AAMVA
     def subfiles
       @subfiles ||= begin
         data_elements = Hash[@standard.required_data_elements.map do |type|
-          [type.upcase, send(type)]
+          [type.upcase, factory(type)]
         end]
 
         {
@@ -60,12 +60,12 @@ module AAMVA
       end
     end
 
-    def method_missing(name, *args)
-      if factory = @standard.factory(name)
-        Factory.build(factory[:type], factory[:options])
-      else
-        super
-      end
+    def factory(type)
+      factory = @standard.factory(type)
+
+      raise ArgumentError if factory.nil?
+
+      Factory.build(factory[:type], factory[:options])
     end
   end
 end
