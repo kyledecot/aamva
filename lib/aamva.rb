@@ -26,23 +26,4 @@ module AAMVA
     can: '%Y%m%d',
     usa: '%m%d%Y'
   }.freeze
-
-  REQUIRED_DATA_ELEMENTS = %i[
-    dac
-    dbc
-    day
-    ddf
-    ddg
-  ].freeze
-
-  DAY_MAPPING = {
-    'BLK' => 'Black',
-    'BLU' => 'Blue',
-    'BRO' => 'Brown',
-    'GRY' => 'Gray',
-    'GRN' => 'Green',
-    'HAZ' => 'Hazel',
-    'MAR' => 'Maroon PNK Pink',
-    'DIC' => 'Dichromatic UNK Unknown'
-  }.freeze
 end
