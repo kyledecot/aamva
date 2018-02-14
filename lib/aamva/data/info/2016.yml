@@ -132,6 +132,7 @@ data_elements:
     required: true
     data_element: Middle name truncation
     definition: A code that indicates whether a field has been truncated (T), has not been truncated (N), or – unknown whether truncated (U).
+    regexp: (T|N|U)
     factory:
       type: enum
       options:
@@ -149,6 +150,7 @@ data_elements:
     required: true
     data_element: First name truncation
     definition: A code that indicates whether a field has been truncated (T), has not been truncated (N), or – unknown whether truncated (U).
+    regexp: (T|N|U)
     factory:
       type: enum
       options:
@@ -166,6 +168,7 @@ data_elements:
     required: true
     data_element: Physical Description – Eye Color
     definition: Color of cardholder's eyes. (ANSI D-20 codes)
+    regexp: (BLK|BLU|BRO|GRY|GRN|HAZ|MAR|DIC)
     factory:
       type: enum
       options:
@@ -183,6 +186,7 @@ data_elements:
     required: true
     data_element: Family name truncation
     definition: A code that indicates whether a field has been truncated (T), has not been truncated (N), or – unknown whether truncated (U).
+    regexp: (T|N|U)
     factory:
       type: enum
       options:

@@ -10,33 +10,6 @@ module AAMVA
       regexp(args[0], name)
     end
 
-    # Family name truncation
-
-    def dde(dde)
-      truncation(dde)
-    end
-
-    # First name truncation
-
-    def ddf(ddf)
-      truncation(ddf)
-    end
-
-    # Middle name truncation
-
-    def ddg(ddg)
-      truncation(ddg)
-    end
-
-    # Physical Description - Eye Color
-
-    def day(day)
-      return false unless length(day, min: DAY_LENGTH, max: DAY_LENGTH)
-      return false unless DAY_MAPPING.keys.include?(day)
-
-      true
-    end
-
     def dai(dai)
       return false unless length(dai, min: 1, max: 20)
 
@@ -60,10 +33,6 @@ module AAMVA
 
     def length(value, min:, max:)
       value.length >= min && value.length <= max
-    end
-
-    def truncation(value, indicators = @standard['truncation_indicators'])
-      value.match?(/\A[#{indicators.join("")}]{1}\z/)
     end
   end
 end
