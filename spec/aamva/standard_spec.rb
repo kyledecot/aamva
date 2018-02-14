@@ -6,7 +6,7 @@ RSpec.describe AAMVA::Standard do
       it "does not raise" do
         expect do
           described_class.new("2016")
-        end.to_not raise_error(AAMVA::Standard::UnsupportedStandard)
+        end.to_not raise_error
       end
     end
 
