@@ -70,7 +70,8 @@ data_elements:
     factory:
       type: city
       options:
-        length: 20
+        truncate:
+          length: 20
   dak:
     required: true
     data_element: Address – Postal Code
