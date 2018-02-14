@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module AAMVA
   class Header
     attr_reader :number_of_entries, :jurisdiction_version_number, :issuer_identification_number

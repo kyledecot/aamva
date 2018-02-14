@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'faker'
 
 module AAMVA
@@ -13,7 +15,7 @@ module AAMVA
     private
 
     def self.enum(options = {})
-      options.fetch("values").sample
+      options.fetch('values').sample
     end
 
     def self.range(options = {})
@@ -69,7 +71,7 @@ module AAMVA
       string(defaults.merge(options))
     end
 
-    def self.height(options = {})
+    def self.height(_options = {})
       height = ('000'..'999').to_a.sample
 
       "#{height} #{LENGTH_UNITS.first}"
@@ -84,22 +86,22 @@ module AAMVA
     end
 
     def self.date(options = {})
-      formats = options.fetch("formats")
+      formats = options.fetch('formats')
 
       Faker::Date.backward.strftime(formats.values.first)
     end
 
-    def self.endorsement_codes(options = {})
+    def self.endorsement_codes(_options = {})
       UPPER_ALPHA_CHARACTERS.sample(5).join('')
     end
 
-     def self.city(options = {})
-       defaults = {
-         'value' => Faker::Address.city
-       }
+    def self.city(options = {})
+      defaults = {
+        'value' => Faker::Address.city
+      }
 
-       string(defaults.merge(options))
-     end
+      string(defaults.merge(options))
+    end
 
     def self.state(options = {})
       defaults = {
@@ -109,7 +111,7 @@ module AAMVA
       string(defaults.merge(options))
     end
 
-    def self.vehicle_class(options = {})
+    def self.vehicle_class(_options = {})
       chars = ('A'..'Z').to_a + ('0'..'9').to_a
 
       chars.sample(6).join('')

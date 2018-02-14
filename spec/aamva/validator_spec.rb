@@ -3,11 +3,11 @@
 require 'spec_helper'
 
 RSpec.describe AAMVA::Validator do
-  let(:standard) { AAMVA::Standard.new("2016") }
+  let(:standard) { AAMVA::Standard.new('2016') }
 
   subject(:validator) { described_class.new(standard) }
 
-  describe "#valid?" do
+  describe '#valid?' do
     describe 'dag' do
       describe 'when valid' do
         it { expect(validator.valid?(:dag, "27082 O'Conner Green")).to be(true) }

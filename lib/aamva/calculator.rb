@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 module AAMVA
   class Calculator
     def self.subfile(type:, data_elements:, data_element_separator:, segment_terminator:)
       joined_pairs = data_elements
-        .map { |k, v| "#{k}#{v}" }
-        .join(data_element_separator)
+                     .map { |k, v| "#{k}#{v}" }
+                     .join(data_element_separator)
 
       "#{type}#{joined_pairs}#{segment_terminator}"
     end
@@ -16,11 +18,11 @@ module AAMVA
           data_element_separator: data_element_separator,
           segment_terminator: segment_terminator
         )
-      end.join("")
+      end.join('')
     end
 
     def self.subfile_offset
-      "TODO"
+      'TODO'
     end
 
     def self.subfile_length(type:, data_elements:, data_element_separator:, segment_terminator:)

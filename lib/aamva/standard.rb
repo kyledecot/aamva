@@ -14,7 +14,7 @@ module AAMVA
     def initialize(year)
       path = File.expand_path("../../../lib/aamva/data/info/#{year}.yml", __FILE__)
 
-      raise UnsupportedStandard, "Unsupported Standard: #{year}" unless File.exists?(path)
+      raise UnsupportedStandard, "Unsupported Standard: #{year}" unless File.exist?(path)
 
       @spec = YAML.load_file(path)
     end
@@ -24,13 +24,13 @@ module AAMVA
     def factory(field)
       if data_element?(field)
         {
-          :type => data_element(field)&.dig("factory", "type"),
-          :options => data_element(field)&.dig("factory", "options").to_h
+          type: data_element(field)&.dig('factory', 'type'),
+          options: data_element(field)&.dig('factory', 'options').to_h
         }
       elsif header_field?(field)
         {
-          :type => header(field)&.dig("factory", "type"),
-          :options => header(field)&.dig("factory", "options").to_h
+          type: header(field)&.dig('factory', 'type'),
+          options: header(field)&.dig('factory', 'options').to_h
         }
       end
     end
@@ -47,7 +47,7 @@ module AAMVA
       @spec['data_elements'][data_element.to_s]
     end
 
-  private
+    private
 
     def data_element?(field)
       !!data_element(field)

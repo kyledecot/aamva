@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module AAMVA
   class Data
     attr_reader :header, :subfile_designators, :subfiles

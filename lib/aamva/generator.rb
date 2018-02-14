@@ -31,8 +31,8 @@ module AAMVA
         length = Calculator.subfile_length(
           type: subfile.type,
           data_elements: subfile.data_elements,
-          data_element_separator: @standard["data_element_separator"],
-          segment_terminator: @standard["segment_terminator"]
+          data_element_separator: @standard['data_element_separator'],
+          segment_terminator: @standard['segment_terminator']
         )
 
         offset = Calculator.subfile_offset
@@ -52,9 +52,9 @@ module AAMVA
         end]
 
         {
-        "DL" => Subfile.new(
-          type: "DL",
-          data_elements: data_elements
+          'DL' => Subfile.new(
+            type: 'DL',
+            data_elements: data_elements
           )
         }
       end

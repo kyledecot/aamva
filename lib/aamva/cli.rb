@@ -10,8 +10,8 @@ module AAMVA
     version AAMVA::VERSION
 
     command ['encode'] do |c|
-      c.flag [:f, :format], :type => String, :default_value => 'string'
-      c.flag [:s, :standard], :type => String, :default_value => '2016'
+      c.flag %i[f format], type: String, default_value: 'string'
+      c.flag %i[s standard], type: String, default_value: '2016'
 
       c.action do |_global, options, _args|
         format = options.fetch(:format)
@@ -20,7 +20,7 @@ module AAMVA
         data = AAMVA::Generator.new(standard).data
         encoder = AAMVA::Encoder.new(
           standard: standard,
-          data: data,
+          data: data
         )
 
         puts encoder.format(format)

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module AAMVA
   class Utils
     def self.truncate(value, options = {})
