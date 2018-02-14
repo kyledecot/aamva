@@ -1,11 +1,24 @@
 module AAMVA
   class Encoder
+    class UnsupportedFormat < ArgumentError
+    end
+
+    FORMATS = [:string, :png]
+
     attr_reader :standard, :data
 
     def initialize(standard:, data:)
       @standard = standard
       @data = data
     end
+
+    def format(format)
+      raise UnsupportedFormat unless FORMATS.include?(format)
+
+      send(format)
+    end
+
+    private
 
     def string
       "#{header}#{subfile_designators}#{subfiles}"
@@ -22,8 +35,6 @@ module AAMVA
     def png
       @png ||= pdf417.to_chunky_png
     end
-
-    private
 
     def header
       @header ||= begin

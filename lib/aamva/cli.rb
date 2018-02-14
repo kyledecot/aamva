@@ -23,7 +23,7 @@ module AAMVA
           data: data,
         )
 
-        puts encoder.public_send(format)
+        puts encoder.format(format)
       end
     end
   end
