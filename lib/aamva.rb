@@ -21,9 +21,4 @@ module AAMVA
   ALPHA_CHARACTERS = UPPER_ALPHA_CHARACTERS + LOWER_ALPHA_CHARACTERS
 
   LENGTH_UNITS = %w[in cm].freeze
-
-  DATE_FORMATS = {
-    can: '%Y%m%d',
-    usa: '%m%d%Y'
-  }.freeze
 end

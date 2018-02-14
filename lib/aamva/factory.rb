@@ -84,7 +84,9 @@ module AAMVA
     end
 
     def self.date(options = {})
-      Faker::Date.backward.strftime(DATE_FORMATS[:usa])
+      formats = options.fetch("formats")
+
+      Faker::Date.backward.strftime(formats.values.first)
     end
 
     def self.endorsement_codes(options = {})

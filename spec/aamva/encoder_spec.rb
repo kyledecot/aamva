@@ -76,7 +76,6 @@ RSpec.describe AAMVA::Encoder do
     )
   end
 
-
   describe "#format" do
     describe "when supported format" do
       it "it does not raise" do

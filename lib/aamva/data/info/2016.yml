@@ -31,6 +31,10 @@ data_elements:
     regexp: \A[\d+]{8,8}\z
     factory:
       type: date
+      options:
+        formats:
+          usa: '%m%d%Y'
+          can: '%Y%m%d'
   dba:
     required: true
     data_element: Document Expiration Date
@@ -38,6 +42,10 @@ data_elements:
     regexp: \A[\d+]{8,8}\z
     factory:
       type: date
+      options:
+        formats:
+          usa: '%m%d%Y'
+          can: '%Y%m%d'
   dbd:
     required: true
     data_element: Document Issue Date
@@ -45,6 +53,10 @@ data_elements:
     regexp: \A[\d+]{8,8}\z
     factory:
       type: date
+      options:
+        formats:
+          usa: '%m%d%Y'
+          can: '%Y%m%d'
   daj:
     required: true
     data_element: Address – Jurisdiction Code
