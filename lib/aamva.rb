@@ -22,9 +22,6 @@ module AAMVA
 
   LENGTH_UNITS = %w[in cm].freeze
 
-  DAY_LENGTH = 3
-  MAX_DAC_LENGTH = 40
-
   DATE_FORMATS = {
     can: '%Y%m%d',
     usa: '%m%d%Y'
