@@ -10,7 +10,11 @@ module AAMVA
     version AAMVA::VERSION
 
     command ['encode'] do |c|
-      c.action do |_global, _options, _args|
+      c.flag [:f, :format], :type => String, :default_value => 'string'
+
+      c.action do |_global, options, _args|
+        format = options.fetch(:format, 'png')
+
         standard = AAMVA::Standard.new("2016")
         data = AAMVA::Generator.new(standard).data
         encoder = AAMVA::Encoder.new(
@@ -18,7 +22,7 @@ module AAMVA
           data: data,
         )
 
-        puts encoder.png
+        puts encoder.public_send(format)
       end
     end
   end
