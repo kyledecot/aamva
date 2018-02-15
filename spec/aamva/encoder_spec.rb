@@ -82,13 +82,13 @@ RSpec.describe AAMVA::Encoder do
     describe 'when supported format' do
       it 'it does not raise' do
         expect do
-          encoder.format(:string)
+          encoder.format('string')
         end.to_not raise_error
       end
 
       describe 'when :string' do
         it 'encodes correctly' do
-          expect(encoder.format(:string)).to eq("@\n\u001E\rANSI 636023080102DL00410279ZO03200024DLDBA09142019\nDCSDECOT\nDACKYLE\nDADBRANDON\nDBD10032015\nDBB09141986\nDBC1\nDAYHAZ\nDAU070 IN\nDAG1437 CHESAPEAKE AVE\nDAICOLUMBUS\nDAJOH\nDAK432122152  \nDAQSS430403\nDCF2509UN6813300000\nDCGUSA\nDDEN\nDDFN\nDDGN\nDAZBRO\nDCIUS,OHIO\nDCJNONE\nDCUNONE\nDCE4\nDDAM\nDDB12042013\nDAW170\nDCAD\nDCBA\nDCDNONE\rZOZOAN\nZOBN\nZOE09142019\r")
+          expect(encoder.format('string')).to eq("@\n\u001E\rANSI 636023080102DL00410279ZO03200024DLDBA09142019\nDCSDECOT\nDACKYLE\nDADBRANDON\nDBD10032015\nDBB09141986\nDBC1\nDAYHAZ\nDAU070 IN\nDAG1437 CHESAPEAKE AVE\nDAICOLUMBUS\nDAJOH\nDAK432122152  \nDAQSS430403\nDCF2509UN6813300000\nDCGUSA\nDDEN\nDDFN\nDDGN\nDAZBRO\nDCIUS,OHIO\nDCJNONE\nDCUNONE\nDCE4\nDDAM\nDDB12042013\nDAW170\nDCAD\nDCBA\nDCDNONE\rZOZOAN\nZOBN\nZOE09142019\r")
         end
       end
     end
@@ -96,7 +96,7 @@ RSpec.describe AAMVA::Encoder do
     describe 'when unsupported format' do
       it 'raises' do
         expect do
-          encoder.format(:invalid)
+          encoder.format('invalid')
         end.to raise_error(AAMVA::Encoder::UnsupportedFormat)
       end
     end

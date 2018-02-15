@@ -18,10 +18,7 @@ module AAMVA
         standard = Standard.new(options.fetch(:standard))
 
         data = AAMVA::Generator.new(standard).data
-        encoder = AAMVA::Encoder.new(
-          standard: standard,
-          data: data
-        )
+        encoder = AAMVA::Encoder.new(standard: standard, data: data)
 
         puts encoder.format(format)
       end

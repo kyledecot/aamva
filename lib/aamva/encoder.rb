@@ -5,7 +5,7 @@ module AAMVA
     class UnsupportedFormat < ArgumentError
     end
 
-    FORMATS = %i[string png].freeze
+    FORMATS = %w[string png].freeze
 
     attr_reader :standard, :data
 
