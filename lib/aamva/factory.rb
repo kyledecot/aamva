@@ -33,11 +33,8 @@ module AAMVA
     end
 
     def self.string(options = {})
-      characters = options.fetch('characters', ['alphanumeric']).map do |c|
-        CHARACTERS[c]
-      end.flatten.uniq
-
-      length = options.dig('truncate', 'length') || DEFAULT_STRING_LENGTH
+      characters = characters(options)
+      length = length(options)
 
       value = options.fetch('value') do
         random_string(length, characters)
@@ -45,14 +42,6 @@ module AAMVA
       value = Utils.truncate(value, options['truncate']) if options.key?('truncate')
 
       value
-    end
-
-    def self.restriction_codes(options = {})
-      defaults = {
-        'value' => UPPER_ALPHA_CHARACTERS.sample(12).join('')
-      }
-
-      string(defaults.merge(options))
     end
 
     def self.street_address(options = {})
@@ -110,6 +99,16 @@ module AAMVA
 
     def self.random_string(length, characters)
       characters.sample(length).join('')
+    end
+
+    def self.length(options)
+      options.dig('truncate', 'length') || DEFAULT_STRING_LENGTH
+    end
+
+    def self.characters(options)
+      options.fetch('characters', ['alphanumeric']).map do |c|
+        CHARACTERS[c]
+      end.flatten.uniq
     end
   end
 end
