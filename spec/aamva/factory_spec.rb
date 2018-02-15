@@ -11,6 +11,14 @@ RSpec.describe AAMVA::Factory do
     end
 
     describe ':string' do
+      describe 'characters' do
+        it 'only uses the characters listed' do
+          result = described_class.build(:string, 'characters' => ['upper_alphanumeric'])
+
+          expect(result).to_not match(/[a-z]/)
+        end
+      end
+
       describe 'truncate' do
         it { expect(described_class.build(:string, 'value' => 'Hello', 'truncate' => { 'length' => 3 })).to eq('Hel') }
       end

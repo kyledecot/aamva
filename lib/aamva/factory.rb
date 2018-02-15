@@ -4,6 +4,16 @@ require 'faker'
 
 module AAMVA
   class Factory
+    DEFAULT_STRING_LENGTH = 40
+
+    CHARACTERS = {
+      'alpha' => ('a'..'z').to_a,
+      'numeric' => ('0'..'9').to_a,
+      'alphanumeric' => ('a'..'z').to_a + ('0'..'9').to_a,
+      'upper_alphanumeric' => ('A'..'Z').to_a + ('0'..'9').to_a,
+      'upper_alpha' => ('A'..'Z').to_a
+    }
+
     def self.build(type, options = {})
       if respond_to?(type)
         send(type, options)
@@ -23,8 +33,14 @@ module AAMVA
     end
 
     def self.string(options = {})
+      characters = options.fetch('characters', ['alphanumeric']).map do |c|
+        CHARACTERS[c]
+      end.flatten.uniq
+
+      length = options.dig('truncate', 'length') || DEFAULT_STRING_LENGTH
+
       value = options.fetch('value') do
-        random_string(options['truncate']['length'])
+        random_string(length, characters)
       end
       value = Utils.truncate(value, options['truncate']) if options.key?('truncate')
 
@@ -57,7 +73,7 @@ module AAMVA
 
     def self.postal_code(options = {})
       defaults = {
-        'value' => random_string(11)
+        'value' => random_string(11, CHARACTERS['alphanumeric'])
       }
 
       string(defaults.merge(options))
@@ -65,7 +81,7 @@ module AAMVA
 
     def self.customer_id_number(options = {})
       defaults = {
-        'value' => random_string(25)
+        'value' => random_string(25, CHARACTERS['alphanumeric'])
       }
 
       string(defaults.merge(options))
@@ -118,10 +134,8 @@ module AAMVA
       chars.sample(6).join('')
     end
 
-    def self.random_string(length)
-      chars = ('A'..'Z').to_a + ('0'..'9').to_a
-
-      chars.sample(length).join('')
+    def self.random_string(length, characters)
+      characters.sample(length).join('')
     end
   end
 end
