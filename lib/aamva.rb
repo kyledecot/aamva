@@ -16,7 +16,4 @@ require 'aamva/factory'
 require 'aamva/utils'
 
 module AAMVA
-  UPPER_ALPHA_CHARACTERS = ('A'..'Z').to_a
-  LOWER_ALPHA_CHARACTERS = ('a'..'z').to_a
-  ALPHA_CHARACTERS = UPPER_ALPHA_CHARACTERS + LOWER_ALPHA_CHARACTERS
 end

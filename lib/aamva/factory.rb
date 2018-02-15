@@ -71,22 +71,6 @@ module AAMVA
       string(defaults.merge(options))
     end
 
-    def self.postal_code(options = {})
-      defaults = {
-        'value' => random_string(11, CHARACTERS['alphanumeric'])
-      }
-
-      string(defaults.merge(options))
-    end
-
-    def self.customer_id_number(options = {})
-      defaults = {
-        'value' => random_string(25, CHARACTERS['alphanumeric'])
-      }
-
-      string(defaults.merge(options))
-    end
-
     def self.height(options = {})
       height = (options.fetch('min')..options.fetch('max')).to_a.sample
       units = options.fetch('units')
@@ -108,10 +92,6 @@ module AAMVA
       Faker::Date.backward.strftime(formats.values.first)
     end
 
-    def self.endorsement_codes(_options = {})
-      UPPER_ALPHA_CHARACTERS.sample(5).join('')
-    end
-
     def self.city(options = {})
       defaults = {
         'value' => Faker::Address.city
@@ -126,12 +106,6 @@ module AAMVA
       }
 
       string(defaults.merge(options))
-    end
-
-    def self.vehicle_class(_options = {})
-      chars = ('A'..'Z').to_a + ('0'..'9').to_a
-
-      chars.sample(6).join('')
     end
 
     def self.random_string(length, characters)
