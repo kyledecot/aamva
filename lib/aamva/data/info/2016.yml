@@ -109,6 +109,12 @@ data_elements:
     regexp: \A[\d]{3} (in|cm)\z
     factory:
       type: height
+      options:
+        min: '000'
+        max: '999'
+        units:
+          - in
+          - cm
   dcd:
     required: true
     data_element: Jurisdiction- specific endorsement codes

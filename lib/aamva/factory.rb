@@ -71,10 +71,11 @@ module AAMVA
       string(defaults.merge(options))
     end
 
-    def self.height(_options = {})
-      height = ('000'..'999').to_a.sample
+    def self.height(options = {})
+      height = (options.fetch('min')..options.fetch('max')).to_a.sample
+      units = options.fetch('units')
 
-      "#{height} #{LENGTH_UNITS.first}"
+      "#{height} #{units.first}"
     end
 
     def self.first_name(options = {})
