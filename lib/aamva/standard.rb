@@ -19,6 +19,10 @@ module AAMVA
       @spec = YAML.load_file(path)
     end
 
+    def self.current
+      new("2016")
+    end
+
     def_delegators :@spec, :[]
 
     def factory(field)
