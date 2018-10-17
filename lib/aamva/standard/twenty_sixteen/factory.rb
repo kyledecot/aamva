@@ -12,7 +12,7 @@ module AAMVA
       'alphanumeric' => ('a'..'z').to_a + ('0'..'9').to_a,
       'upper_alphanumeric' => ('A'..'Z').to_a + ('0'..'9').to_a,
       'upper_alpha' => ('A'..'Z').to_a
-    }
+    }.freeze
 
     def self.build(type, options = {})
       if respond_to?(type)

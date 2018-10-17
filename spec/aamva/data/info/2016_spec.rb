@@ -3,7 +3,7 @@
 require 'spec_helper'
 
 RSpec.describe 'data/info/2016.yml' do
-  DATA = YAML.load_file(File.expand_path('../../../../../lib/aamva/data/info/2016.yml', __FILE__))
+  DATA = YAML.load_file(File.expand_path('../../../../lib/aamva/data/info/2016.yml', __dir__))
 
   DATA['data_elements'].each do |data_element, data|
     describe data_element.to_s do
